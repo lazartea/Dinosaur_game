@@ -9,6 +9,7 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - `character.py`
 - `room.py`
 - `updater.py`
+
 ##Current features
 - drop command (1 pt)
 - wait command (1 pt)
