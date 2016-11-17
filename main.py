@@ -10,18 +10,21 @@ import updater
 player = Player()
 
 def createWorld():
-    a = Room("You are in room 1")
-    b = Room("You are in room 2")
-    c = Room("You are in room 3")
-    d = Room("You are in room 4")
+    a = Room("You are in the forest.")
+    b = Room("You are by the beach.")
+    c = Room("You are in a cave.")
+    d = Room("You are on a volcano.")
     Room.connectRooms(a, "east", b, "west")
     Room.connectRooms(c, "east", d, "west")
     Room.connectRooms(a, "north", c, "south")
     Room.connectRooms(b, "north", d, "south")
-    i = Item("Rock", "This is just a rock.",15)
-    h = Item("Rock", "This is just a rock.",15)
-    i.putInRoom(b)
+    listthing = [Item("Rock","This is just a rock",15) for i in range(5)]
+    h = Item("Leaf", "This is just a leaf.",15)
+    c = Item("Boulder","A large boulder.",150)
+    for item in listthing:
+        item.putInRoom(b)
     h.putInRoom(b)
+    c.putInRoom(b)
     player.location = a
     Monster("Angry T-Rex", 20, b)
     Merchant("Argentinosaurus","food","gives you health",15,4,0,b)
@@ -81,11 +84,30 @@ while playing and player.alive:
         if commandWords[0].lower() == "go":   #cannot handle multi-word directions
             player.goDirection(commandWords[1]) 
             timePasses = True
+        elif commandWords[0].lower() == "wait": 
+            timePasses = True
+        elif commandWords[0].lower() == "inspect":
+            targetName = command[8:]
+            target = player.location.getItemByName(targetName)
+            if target != False:
+                player.inspect(target)
+            else:
+                print("No such item.")
+                commandSuccess = False
+
         elif commandWords[0].lower() == "pickup":  #can handle multi-word objects
             targetName = command[7:]
             target = player.location.getItemByName(targetName)
             if target != False:
                 player.pickup(target)
+            else:
+                print("No such item.")
+                commandSuccess = False
+        elif commandWords[0].lower() == "drop":  
+            targetName = command[5:]
+            target = player.getItemByName(targetName)
+            if target != False:
+                player.drop(target)
             else:
                 print("No such item.")
                 commandSuccess = False
@@ -103,6 +125,15 @@ while playing and player.alive:
             else:
                 print("No such monster.")
                 commandSuccess = False
+        elif commandWords[0].lower() == "eat":
+            targetName = command[4:]
+            target = player.getItemByName(targetName)
+            if target != True:
+                player.eat(target)
+            else:
+                print (targetName)
+                print("No such item.")
+                commandSuccess = False
 
 
         elif commandWords[0].lower() == "talk":
@@ -114,7 +145,6 @@ while playing and player.alive:
                 t = player.buy(command,target)
 
             else:
-                print(targetName)
                 print("No such merchant.")
                 commandSuccess = False
 

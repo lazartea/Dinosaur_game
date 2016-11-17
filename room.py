@@ -4,6 +4,7 @@ class Room:
     def __init__(self, description):
         self.desc = description
         self.monsters = []
+       
         #add charcters
         self.merchants = []
         self.exits = []
@@ -35,6 +36,7 @@ class Room:
         loot = random.randint(0,15)
         player.money += loot
         print("You scavange "+ str(loot)+" coins.")
+    
 
 
     def addMonster(self, monster):

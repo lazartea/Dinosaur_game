@@ -1,5 +1,6 @@
 import random
 import updater
+from item import Item 
 
 class Merchant:
     def __init__(self, name, kind, desc, price, amount, weight, room):
@@ -10,11 +11,10 @@ class Merchant:
         self.desc = desc
         self.amount = amount 
         self.weight = weight
+        self.itemlist = [ Item(self.kind,self.desc,self.weight) for i in range(self.amount) ]
         room.addMer(self)
         updater.register(self)
 
-    def sell(self,num):
-        self.amount -= num
 
     def update(self):
         if random.random() < .5:

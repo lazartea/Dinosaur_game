@@ -1,4 +1,5 @@
 import os
+from item import Item
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -13,6 +14,7 @@ class Player:
         self.health = 50
         self.alive = True
     def goDirection(self, direction):
+
         self.location = self.location.getDestination(direction)
     def pickup(self, item):
         #if the item will go over your strength limit, you can't pick it up
@@ -22,7 +24,16 @@ class Player:
             self.location.removeItem(item)
             self.item_weight += item.weight
         else:
-            print("You cannot pick up this item.")
+            print()
+            print("You are not strong enough to pick up this item.")
+            input("Press enter to continue...")
+    def drop(self, item):
+        self.items.remove(item)
+        self.location.addItem(item)
+        print("You have dropped " +item.name)
+    def inspect(self,item):
+        print(item.desc)
+        input("Press enter to continue...")
     def showInventory(self):
         clear()
         print("You are currently carrying:")
@@ -81,24 +92,42 @@ class Player:
         print()
         input("Press enter to continue...")
 
+    def eat(self, item):
+        clear()
+        self.items.remove(item)
+        self.health += 1
+        item.location = None
+        print('Your health is now '+str(self.health))
+        print()
+        input("Press enter to continue...")
 
     def buy(self,amt,mer):
         clear()
         if int(amt) > mer.amount:
             print("You cannot buy that many.")
         else:
-            mer.amount -= int(amt)
             self.money -= mer.price 
             if mer.kind == "food":
                 self.health += int(amt)
 
             else:
                 n = int(amt)
-                while n > 0:
-                    #this isn't properly creating a new item
-                    new = Item(mer.kind, mer.desc, mer.weight)
-                    self.items.append(new)
-                    n -= 1
+                for item in mer.itemlist:
+                    while n > 0:
+                        if (self.item_weight + mer.weight) <= self.strength:
+                            self.items.append(item)
+                            self.item_weight += mer.weight
+                            mer.itemlist.remove(item)
+                            n -= 1
+                        else:
+                            n = 0 
+                            print("You cannot carry that many.")
+
+    def getItemByName(self, name):
+        for i in self.items:
+            if i.name.lower() == name.lower():
+                return i
+        return False
 
 
 
