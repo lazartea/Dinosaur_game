@@ -19,3 +19,10 @@ class Monster:
         self.room.removeMonster(self)
         updater.deregister(self)
 
+class Velociraptor(Monster):
+    species = 'Velociraptor'
+    
+    def __init__(self):
+        Monster.__init__(self)
+    
+    def defend_choice(self):
