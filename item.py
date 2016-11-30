@@ -4,10 +4,11 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 class Item:
-    def __init__(self, name, desc, weight):
+    def __init__(self, name, desc, weight, damage):
         self.name = name
         self.desc = desc
         self.weight = weight
+        self.damage = damage
         self.loc = None
     def describe(self):
         clear()
@@ -17,3 +18,25 @@ class Item:
     def putInRoom(self, room):
         self.loc = room
         room.addItem(self)
+
+class Pistol(Item):
+    type = 'Gun'
+    def __init__(self):
+        Item.__init__(self)
+    def 
+
+class Sword(Item):
+    type = 'Blade'
+    def __init__(self):
+        Item.__init__(self)
+        
+class Knife(Item):
+    type = 'Blade'
+    def __init__(self):
+        Item.__init__(self)
+        
+class Stick(Item):
+    type = 'Blunt'
+    def __init__(self):
+        Item.__init__(self)
+  
