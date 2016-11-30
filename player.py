@@ -24,8 +24,9 @@ class Player:
             self.location.removeItem(item)
             self.item_weight += item.weight
         else:
+            self.health -= 10
             print()
-            print("You are not strong enough to pick up this item.")
+            print("You are not strong enough to pick up this item. You strained your back trying to lift it.")
             input("Press enter to continue...")
     def drop(self, item):
         self.items.remove(item)
