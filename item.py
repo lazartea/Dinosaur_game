@@ -20,23 +20,35 @@ class Item:
         room.addItem(self)
 
 class Pistol(Item):
-    type = 'Gun'
+    name = 'Pistol'
+    desc = 'A .357 Magnum Revolver'
+    weight = '2lb'
+    damage = '50hp'
     def __init__(self):
         Item.__init__(self)
     def 
 
 class Sword(Item):
-    type = 'Blade'
+    name = 'Sword'
+    desc = 'A long steel broadsword'
+    weight = '10lb'
+    damage = '40hp'
     def __init__(self):
         Item.__init__(self)
         
-class Knife(Item):
-    type = 'Blade'
+class Dagger(Item):
+    name = 'Dagger'
+    desc = 'A short dagger with emeralds embedded in the hilt'
+    weight = '1lb'
+    damage = '15hp'
     def __init__(self):
         Item.__init__(self)
         
 class Stick(Item):
-    type = 'Blunt'
+    name = 'Stick'
+    desc = 'A long branch from an oak tree. It's just a stick'
+    weight = '2lb'
+    damage = '10hp'
     def __init__(self):
         Item.__init__(self)
   
