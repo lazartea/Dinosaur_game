@@ -26,7 +26,7 @@ class Player:
         else:
             self.health -= 10
             print()
-            print("You are not strong enough to pick up this item. You strained your back trying to lift it.")
+            print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health)))
             input("Press enter to continue...")
     def drop(self, item):
         self.items.remove(item)
