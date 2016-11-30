@@ -20,9 +20,20 @@ class Monster:
         updater.deregister(self)
 
 class Velociraptor(Monster):
-    species = 'Velociraptor'
+    name = 'Velociraptor'
+    health = '75hp'
+    def __init__(self):
+        Monster.__init__(self)
+    
+class Argentinosaurus(Monster):
+    name = 'Argentinosaurus'
+    health = '200hp'
     
     def __init__(self):
         Monster.__init__(self)
     
-    def defend_choice(self):
+class Stegosaurus(Monster):
+    health = '150hp'
+    name = 'Stegosaurus'
+    def __init__(self):
+        Monster.__init__(self)
