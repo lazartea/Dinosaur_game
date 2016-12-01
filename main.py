@@ -50,7 +50,7 @@ def createWorld():
     Room.connectRooms(c2,"south",c1,"north")
     Room.connectRooms(c1,"east",c3,"west")
     Room.connectRooms(c3,"south",c4,"north")
-    Room.connectRooms(c4,"east",cstart,"west")
+    Room.connectRooms(c4,"west",cstart,"east")
     Room.connectRooms(c4,"east",dstart,"west")
     Room.connectRooms(dstart,"east",d1,"west")
     Room.connectRooms(d1,"north",d2,"south")
@@ -64,9 +64,12 @@ def createWorld():
     h.putInRoom(start)
     c.putInRoom(start)
     player.location = start
-    Monster("Angry T-Rex", 100, start, .5, 25)
-    Merchant("Argentinosaurus","food","gives you health",15,4,0,start)
-    Merchant("Stegosaurus","spear","is a weapon",5,50,25,start)
+    Monster("Angry T-Rex", 100, d3, .5, 25)
+    inventory_dict = {}
+    inventory_list = [Item("spear","A long wooden spear with a Velociraptor tooth on the end. Increases your damage during a fight.",25), Item("Dagger","A sharp blade. Increases your damage during a fight with a small dinosaur.",5), Item("Pistol","Allows you to damage dinosaurs in a fight without the risk of retaliation. Only able to be used once.",15), Item("Sword","Increases your damage during a fight.",25), Item("Anvil","Very heavy.",10000000), Item("Cigarettes","Decreases your health.",1),Item("armor","Protects you from damage during a fight. Can only be used once.",50)]
+    for item in inventory_list:
+        inventory_dict[item] = item.weight * 2
+    Merchant("Stegosaurus", inventory_dict, f3)
    
 
 def clear():
@@ -180,8 +183,9 @@ while playing and player.alive:
             target = player.location.getMerByName(targetName)
             if target != False:
                 player.talkMer(target)
-                command = input("How many? ")
-                t = player.buy(command,target)
+                command = input("What do you want to buy? ")
+                target2 = target.getItemByName(command)
+                t = player.buy(target2,target)
 
             else:
                 print("No such merchant.")
