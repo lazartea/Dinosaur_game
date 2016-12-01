@@ -133,11 +133,13 @@ class Player:
         clear()
         if mer.inven[item] > self.money:
             print("You do not have enough money.")
+            input("Press enter to continue...")
         elif self.item_weight + item.weight > self.strength:
             self.money -= mer.inven[item]
             self.health -= 10
             self.location.addItem(item)
             print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
+            input("Press enter to continue...")
         else:
             self.money -= mer.inven[item]
             self.items.append(item)
