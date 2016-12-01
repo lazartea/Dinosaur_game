@@ -3,25 +3,22 @@ import updater
 from item import Item 
 
 class Merchant:
-    def __init__(self, name, kind, desc, price, amount, weight, room):
+    def __init__(self, name, inven, room):
         self.name = name
-        self.kind = kind
         self.room = room
-        self.price = price
-        self.desc = desc
-        self.amount = amount 
-        self.weight = weight
-        self.itemlist = [ Item(self.kind,self.desc,self.weight) for i in range(self.amount) ]
+        self.inven = inven
         room.addMer(self)
         updater.register(self)
 
 
     def update(self):
-        if random.random() < .5:
-            self.moveTo(self.room.randomNeighbor())
-            self.amount -= 1
-        else:
-            self.amount += 1
+        return
+    
+    def getItemByName(self, name):
+        for i in self.inven:
+            if i.name.lower() == name.lower():
+                return i
+        return False
             
     def moveTo(self, room):
         self.room.removeMer(self)
