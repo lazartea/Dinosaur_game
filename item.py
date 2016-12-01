@@ -4,7 +4,7 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 class Item:
-    def __init__(self, name, desc, weight, damage, prob):
+    def __init__(self, name, desc, weight, health, prob):
         self.name = name
         self.desc = desc
         #item description
@@ -28,35 +28,44 @@ class Pistol(Item):
     name = 'Pistol'
     desc = 'A .357 Magnum Revolver'
     weight = '2lb'
-    damage = '50hp'
+    health = '-50'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, damage, prob)
+        Item.__init__(self, name, desc, weight, health, prob)
 
 class Sword(Item):
     name = 'Sword'
     desc = 'A long steel broadsword'
     weight = '10lb'
-    damage = '40hp'
+    health = '-40'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, damage, prob)
+        Item.__init__(self, name, desc, weight, health, prob)
         
 class Dagger(Item):
     name = 'Dagger'
     desc = 'A short dagger with emeralds embedded in the hilt'
     weight = '1lb'
-    damage = '15hp'
+    health = '-15'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, damage, prob)
+        Item.__init__(self, name, desc, weight, health, prob)
         
 class Stick(Item):
     name = 'Stick'
-    desc = 'A long branch from an oak tree. It's just a stick'
+    desc = 'A long branch from an oak tree. It is just a stick'
     weight = '2lb'
-    damage = '10hp'
+    health = '-10'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, damage, prob)
+        Item.__init__(self, name, desc, weight, health, prob)
+        
+class Armor(Item):
+    name = 'Armor'
+    desc = 'Dinosaur scale armor harvested from stegosaurus plates'
+    weight = '2lb'
+    health = '-10'
+    prob = None
+    def __init__(self):
+        Item.__init__(self, name, desc, weight, health, prob)
   
