@@ -4,11 +4,16 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 class Item:
-    def __init__(self, name, desc, weight, damage):
+    def __init__(self, name, desc, weight, damage, prob):
         self.name = name
         self.desc = desc
+        #item description
         self.weight = weight
+        #weight of item
         self.damage = damage
+        #damage inflicted by the weapon if contact is made
+        self.prob = prob
+        #probability of the weapon inflicting damage 
         self.loc = None
     def describe(self):
         clear()
@@ -25,7 +30,7 @@ class Pistol(Item):
     weight = '2lb'
     damage = '50hp'
     def __init__(self):
-        Item.__init__(self)
+        Item.__init__(self, name, desc, weight, damage, prob)
     def 
 
 class Sword(Item):
@@ -34,7 +39,7 @@ class Sword(Item):
     weight = '10lb'
     damage = '40hp'
     def __init__(self):
-        Item.__init__(self)
+        Item.__init__(self, name, desc, weight, damage, prob)
         
 class Dagger(Item):
     name = 'Dagger'
@@ -42,7 +47,7 @@ class Dagger(Item):
     weight = '1lb'
     damage = '15hp'
     def __init__(self):
-        Item.__init__(self)
+        Item.__init__(self, name, desc, weight, damage, prob)
         
 class Stick(Item):
     name = 'Stick'
@@ -50,5 +55,5 @@ class Stick(Item):
     weight = '2lb'
     damage = '10hp'
     def __init__(self):
-        Item.__init__(self)
+        Item.__init__(self, name, desc, weight, damage, prob)
   
