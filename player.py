@@ -1,5 +1,6 @@
 import os
 from item import Item
+import random
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -11,15 +12,25 @@ class Player:
         self.item_weight = 0
         self.strength = 100
         self.money = 100
-        self.health = 50
+        self.health = 100
         self.alive = True
+
     def goDirection(self, direction):
-...     try:
-...         self.location = self.location.getDestination(direction)
-...         break
-...     except AttributeError:
-...         print("Yikes!  That is not a valid direction. Check your spelling and try again...")
-        
+        try:
+            self.location = self.location.getDestination(direction)
+            break
+        except AttributeError:
+            print("Yikes!  That is not a valid direction. Check your spelling and try again...")
+
+    def update(self):
+        if self.health < 50:
+                self.strength -= 1
+                print("You are injured. You have lost strength.") 
+        else:
+            if random.random() > .5:
+                self.health += 1
+
+
     def pickup(self, item):
         #if the item will go over your strength limit, you can't pick it up
         if self.strength > item.weight + self.item_weight:
@@ -28,9 +39,10 @@ class Player:
             self.location.removeItem(item)
             self.item_weight += item.weight
         else:
-            self.health -= 10
             print()
-            print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
+            self.health -= 10
+         
+-           print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
             input("Press enter to continue...")
     def drop(self, item):
         self.items.remove(item)
@@ -66,17 +78,28 @@ class Player:
         print("Your health is " + str(self.health) + ".")
         print(mon.name + "'s health is " + str(mon.health) + ".")
         print()
-        if self.health > mon.health:
-            self.health -= mon.health
-            if self.health < 50:
-                self.strength -= 10
-                print("You are injured. You have lost strength.")
-            print("You win. Your health is now " + str(self.health) + ".")
-            mon.die()
-            self.location.addLoot(self)
+    
+        if random.random() < mon.prob:
+            self.health -= mon.damage
+            print("The " + mon.name +" injures you.")
+            print("Your health is " + str(self.health)+".")
+            print("The "+ mon.name + "s health is " + str(mon.health) +".")
+            if self.health <= 0:
+                print("You lose.")
+                self.alive = False
+            
         else:
-            print("You lose.")
-            self.alive = False
+            mon.health -= mon.damage
+            print("You injure the " + mon.name)
+            print("Your health is " + str(self.health)+".")
+            print("The "+ mon.name + "'s health is " + str(mon.health)+".")
+            if mon.health <= 0:
+                mon.die()
+                print("You win. Your health is now " + str(self.health) + ".")
+                print("You have gained 5 strength points.")
+                self.strength += 5
+                self.location.addLoot(self)
+        
         print()
         input("Press enter to continue...")
 
@@ -133,8 +156,6 @@ class Player:
             if i.name.lower() == name.lower():
                 return i
         return False
-
-
 
 
 
