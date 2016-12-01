@@ -14,8 +14,12 @@ class Player:
         self.health = 50
         self.alive = True
     def goDirection(self, direction):
-
-        self.location = self.location.getDestination(direction)
+...     try:
+...         self.location = self.location.getDestination(direction)
+...         break
+...     except AttributeError:
+...         print("Yikes!  That is not a valid direction. Check your spelling and try again...")
+        
     def pickup(self, item):
         #if the item will go over your strength limit, you can't pick it up
         if self.strength > item.weight + self.item_weight:
