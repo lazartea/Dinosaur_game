@@ -32,7 +32,6 @@ class Pistol(Item):
     prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, damage, prob)
-    def 
 
 class Sword(Item):
     name = 'Sword'
