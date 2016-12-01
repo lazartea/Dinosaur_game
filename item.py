@@ -4,16 +4,10 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 class Item:
-    def __init__(self, name, desc, weight, health, prob):
+    def __init__(self, name, desc, weight):
         self.name = name
         self.desc = desc
-        #item description
         self.weight = weight
-        #weight of item
-        self.damage = damage
-        #damage inflicted by the weapon if contact is made
-        self.prob = prob
-        #probability of the weapon inflicting damage 
         self.loc = None
     def describe(self):
         clear()
@@ -31,7 +25,7 @@ class Pistol(Item):
     health = '-50'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, health, prob)
+        Item.__init__(self, name, desc, weight)
 
 class Sword(Item):
     name = 'Sword'
@@ -40,7 +34,7 @@ class Sword(Item):
     health = '-40'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, health, prob)
+        Item.__init__(self, name, desc, weight)
         
 class Dagger(Item):
     name = 'Dagger'
@@ -49,7 +43,7 @@ class Dagger(Item):
     health = '-15'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, health, prob)
+        Item.__init__(self, name, desc, weight)
         
 class Stick(Item):
     name = 'Stick'
@@ -58,7 +52,7 @@ class Stick(Item):
     health = '-10'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, health, prob)
+        Item.__init__(self, name, desc, weight)
         
 class Armor(Item):
     name = 'Armor'
@@ -67,5 +61,5 @@ class Armor(Item):
     health = '+50'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight, health, prob)
+        Item.__init__(self, name, desc, weight)
   
