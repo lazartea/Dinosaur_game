@@ -11,8 +11,8 @@ import updater
 player = Player()
 
 def createWorld():
-    start = Room("You are in the forest.")
-    f1 = Room("You walk deeper into the forest.")
+    start = Room("You are in the forest. You are a dinosaur, born from a long lineage of dinosaurs.\nVines hang down to the forest floor from massive old-growth trees. You are hungry.\nYour parents were eaten by an Angry T-Rex. You are sad. You have options, however.\nYou are facing North and trees block you path forward, to the left, and behind you.\nYou can only turn right and make your way east towards your old home. \n\nLast you heard, the Angry T-Rex was headed for a Volcano on the other side of the island.\n\nType 'go east' to walk in this direction.")
+    f1 = Room("You walk east east, past junpiers and large boulders. You traipse over a small trickling creek and see a stegasaurus munching on some ferns. If you would like to talk to the merchant, use the talk command, otherwise you should keep tracking down the Angry T-Rex.")
     f2 = Room("You walk deeper into the forest.")
     f3 = Room("You walk deeper into the forest.")
     f4 = Room("You walk deeper into the forest.")
