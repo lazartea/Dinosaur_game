@@ -2,6 +2,7 @@ from room import Room
 from player import Player
 from item import Item
 from monster import Monster
+
 from Character import Merchant
 import os
 import updater
@@ -10,25 +11,62 @@ import updater
 player = Player()
 
 def createWorld():
-    a = Room("You are in the forest.")
-    b = Room("You are by the beach.")
-    c = Room("You are in a cave.")
-    d = Room("You are on a volcano.")
-    Room.connectRooms(a, "east", b, "west")
-    Room.connectRooms(c, "east", d, "west")
-    Room.connectRooms(a, "north", c, "south")
-    Room.connectRooms(b, "north", d, "south")
-    listthing = [Item("Rock","This is just a rock",15,10,50) for i in range(5)]
-    h = Item("Leaf", "This is just a leaf.",15,0,0)
-    c = Item("Boulder","A large boulder.",150,100,10)
+    start = Room("You are in the forest.")
+    f1 = Room("You walk deeper into the forest.")
+    f2 = Room("You walk deeper into the forest.")
+    f3 = Room("You walk deeper into the forest.")
+    f4 = Room("You walk deeper into the forest.")
+    f5 = Room("The forest seems to be thinning out.")
+    f6 = Room("You come to the edge of the forest.")
+    bstart = Room("You see a beach in the distance.")
+    b1 = Room("You are on the shore.")
+    b2 = Room("You are in the water.")
+    b3 = Room("You are in the water.")
+    cstart = Room("You are at the mouth of a cave.")
+    c1 = Room("You enter the cave.")
+    c2 = Room("You hit a dead end.")
+    c3 = Room("You see something bright in the distance of the cave.")
+    c4 = Room("You are in a cave.")
+    dstart = Room("You are on a volcano.")
+    d1 = Room("You are on a volcano.")
+    d2 = Room("You are on a volcano.")
+    d3 = Room("You are on a volcano.")
+
+    Room.connectRooms(start, "east", f1, "west")
+    Room.connectRooms(f1, "north", f2, "south")
+    Room.connectRooms(f1, "south", f3, "north")
+    Room.connectRooms(f3, "east", f6, "west")
+    Room.connectRooms(f6, "north", f5, "south")
+    Room.connectRooms(f5, "north", f4, "south")
+    Room.connectRooms(f4, "west", f2, "east")
+    Room.connectRooms(f6,"east",bstart,"west")
+    Room.connectRooms(bstart,"south",b2,"north")
+    Room.connectRooms(b2,"east",b3,"west")
+    Room.connectRooms(b3,"north",b1,"south")
+    Room.connectRooms(b1,"west",bstart,"east")
+    Room.connectRooms(b1,"east",cstart,"west")
+    Room.connectRooms(cstart,"north",c1,"south")
+    Room.connectRooms(c2,"south",c1,"north")
+    Room.connectRooms(c1,"east",c3,"west")
+    Room.connectRooms(c3,"south",c4,"north")
+    Room.connectRooms(c4,"east",cstart,"west")
+    Room.connectRooms(c4,"east",dstart,"west")
+    Room.connectRooms(dstart,"east",d1,"west")
+    Room.connectRooms(d1,"north",d2,"south")
+    Room.connectRooms(d1,"south",d3,"north")
+
+    listthing = [Item("Rock","This is just a rock",15) for i in range(5)]
+    h = Item("Leaf", "This is just a leaf.",15)
+    c = Item("Boulder","A large boulder.",150)
     for item in listthing:
-        item.putInRoom(b)
-    h.putInRoom(b)
-    c.putInRoom(b)
-    player.location = a
-    Monster("Angry T-Rex", 20, b)
-    Merchant("Argentinosaurus","food","gives you health",15,4,0,b)
-    Merchant("Stegosaurus","spear","is a weapon",5,50,25,b)
+        item.putInRoom(start)
+    h.putInRoom(start)
+    c.putInRoom(start)
+    player.location = start
+    Monster("Angry T-Rex", 100, start, .5, 25)
+    Merchant("Argentinosaurus","food","gives you health",15,4,0,start)
+    Merchant("Stegosaurus","spear","is a weapon",5,50,25,start)
+    print("You wake up alone.")
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -158,5 +196,6 @@ while playing and player.alive:
         updater.updateAll()
 
     
+
 
 
