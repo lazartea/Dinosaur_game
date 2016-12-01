@@ -23,17 +23,24 @@ class Velociraptor(Monster):
     name = 'Velociraptor'
     health = '75hp'
     def __init__(self):
-        Monster.__init__(self)
+        Monster.__init__(self, name, health, room)
     
 class Argentinosaurus(Monster):
     name = 'Argentinosaurus'
     health = '200hp'
     
     def __init__(self):
-        Monster.__init__(self)
+        Monster.__init__(self, name, health, room)
     
 class Stegosaurus(Monster):
     health = '150hp'
     name = 'Stegosaurus'
     def __init__(self):
-        Monster.__init__(self)
+        Monster.__init__(self, name, health, room)
+        
+class TRex(Monster):
+    health = '150hp'
+    name = 'Angry T-Rex'
+    def __init__(self):
+        Monster.__init__(self, name, health, room)
+        
