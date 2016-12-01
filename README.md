@@ -27,4 +27,14 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - currency (4 pts)
 - bigger world (2pts)
 
+##TO DO
+- victory/loss
+- items need to do what they say that they do
+- extra monsters/fix pter
+- add objects to more rooms
+- character at the beginning
+- crafting
+- complex rooms 
+- command abrv
+
 
