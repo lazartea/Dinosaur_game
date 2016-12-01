@@ -18,5 +18,6 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - stacking items (2 pts)
 - loot (2 pts)
 - inventory maximum size (2 pts)
+- health subtraction when maximum inventory size reached (1pt)
 - healing items (2 pts)
 
