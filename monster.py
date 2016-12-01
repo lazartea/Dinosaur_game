@@ -15,12 +15,12 @@ class Monster:
             if self.name != "Angry T-Rex":
                 self.moveTo(self.room.randomNeighbor())
 
-        if self.name == "Pterodactyl":
-            if random.random() < .2:
-                player.health -= 10
-                self.health += 10
-                player.money -= 10
-                print("A Pterodactyl swoops in and attacks. You lose 10 health and 10 money.")
+#         if self.name == "Pterodactyl":
+#             if random.random() < .2:
+#                 player.health -= 10
+#                 self.health += 10
+#                 player.money -= 10
+#                 print("A Pterodactyl swoops in and attacks. You lose 10 health and 10 money.")
 
 
     def moveTo(self, room):
