@@ -25,4 +25,6 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - player attributes (3 pts)
 - more monsters (3 pts) (almost done)
 - currency (4 pts)
+- bigger world (2pts)
+
 
