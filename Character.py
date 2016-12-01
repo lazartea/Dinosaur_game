@@ -11,7 +11,7 @@ class Merchant:
         self.desc = desc
         self.amount = amount 
         self.weight = weight
-        self.itemlist = [ Item(self.kind,self.desc,self.weight,self.damage,self.prob) for i in range(self.amount) ]
+        self.itemlist = [ Item(self.kind,self.desc,self.weight) for i in range(self.amount) ]
         room.addMer(self)
         updater.register(self)
 
@@ -22,6 +22,7 @@ class Merchant:
             self.amount -= 1
         else:
             self.amount += 1
+            
     def moveTo(self, room):
         self.room.removeMer(self)
         self.room = room
