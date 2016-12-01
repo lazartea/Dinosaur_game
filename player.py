@@ -129,27 +129,20 @@ class Player:
         print()
         input("Press enter to continue...")
 
-    def buy(self,amt,mer):
+    def buy(self,item,mer):
         clear()
-        if int(amt) > mer.amount:
-            print("You cannot buy that many.")
+        if mer.inven[item] > self.money:
+            print("You do not have enough money.")
+        elif self.item_weight + item.weight > self.strength:
+            self.money -= mer.inven[item]
+            self.health -= 10
+            self.location.addItem(item)
+            print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
         else:
-            self.money -= mer.price 
-            if mer.kind == "food":
-                self.health += int(amt)
-
-            else:
-                n = int(amt)
-                for item in mer.itemlist:
-                    while n > 0:
-                        if (self.item_weight + mer.weight) <= self.strength:
-                            self.items.append(item)
-                            self.item_weight += mer.weight
-                            mer.itemlist.remove(item)
-                            n -= 1
-                        else:
-                            n = 0 
-                            print("You cannot carry that many.")
+            self.money -= mer.inven[item]
+            self.items.append(item)
+            item.loc = self
+            self.item_weight += item.weight
 
     def getItemByName(self, name):
         for i in self.items:
