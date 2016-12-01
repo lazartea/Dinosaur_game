@@ -66,7 +66,7 @@ def createWorld():
     Monster("Angry T-Rex", 100, start, .5, 25)
     Merchant("Argentinosaurus","food","gives you health",15,4,0,start)
     Merchant("Stegosaurus","spear","is a weapon",5,50,25,start)
-    print("You wake up alone.")
+   
 
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
