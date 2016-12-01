@@ -64,7 +64,7 @@ class Armor(Item):
     name = 'Armor'
     desc = 'Dinosaur scale armor harvested from stegosaurus plates'
     weight = '2lb'
-    health = '-10'
+    health = '+50'
     prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, health, prob)
