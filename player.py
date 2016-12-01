@@ -16,11 +16,10 @@ class Player:
         self.alive = True
 
     def goDirection(self, direction):
-        try:
-            self.location = self.location.getDestination(direction)
-            break
-        except AttributeError:
-            print("Yikes!  That is not a valid direction. Check your spelling and try again...")
+        if self.location.getDestination(direction) == None:
+            return
+        else:
+            self.location = self.location.getDestination(direction)  
 
     def update(self):
         if self.health < 50:
@@ -41,8 +40,7 @@ class Player:
         else:
             print()
             self.health -= 10
-         
--           print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
+            print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
             input("Press enter to continue...")
     def drop(self, item):
         self.items.remove(item)
