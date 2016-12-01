@@ -101,13 +101,15 @@ class Player:
         print()
         input("Press enter to continue...")
 
-    def talkMer(self,char):
+    def talkMer(self,mer):
         clear()
-        print("You walk up to "+ char.name+".")
+        print("You walk up to "+ mer.name+".")
         print()
-        print(char.name+" sells "+char.kind+".")
-        print(char.name + " has " + str(char.amount) + ".")
-        print(char.kind + " costs " + str(char.price) + ".")
+        print(mer.name+" has the following items for sale: ")
+        for item in mer.inven:
+            print(item.name+": "+item.desc+" Price: "+str(mer.inven[item]))
+        
+        print()
 
     def status(self):
         clear()
