@@ -65,6 +65,7 @@ def createWorld():
     c.putInRoom(start)
     player.location = start
     Monster("Angry T-Rex", 100, d3, .5, 25)
+    Monster("Pterodactyl", 100, start, .5, 25)
     inventory_dict = {}
     inventory_list = [Item("spear","A long wooden spear with a Velociraptor tooth on the end. Increases your damage during a fight.",25), Item("Dagger","A sharp blade. Increases your damage during a fight with a small dinosaur.",5), Item("Pistol","Allows you to damage dinosaurs in a fight without the risk of retaliation. Only able to be used once.",15), Item("Sword","Increases your damage during a fight.",25), Item("Anvil","Very heavy.",10000000), Item("Cigarettes","Decreases your health.",1),Item("armor","Protects you from damage during a fight. Can only be used once.",50)]
     for item in inventory_list:
