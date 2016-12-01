@@ -29,6 +29,7 @@ class Pistol(Item):
     desc = 'A .357 Magnum Revolver'
     weight = '2lb'
     damage = '50hp'
+    prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, damage, prob)
     def 
@@ -38,6 +39,7 @@ class Sword(Item):
     desc = 'A long steel broadsword'
     weight = '10lb'
     damage = '40hp'
+    prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, damage, prob)
         
@@ -46,6 +48,7 @@ class Dagger(Item):
     desc = 'A short dagger with emeralds embedded in the hilt'
     weight = '1lb'
     damage = '15hp'
+    prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, damage, prob)
         
@@ -54,6 +57,7 @@ class Stick(Item):
     desc = 'A long branch from an oak tree. It's just a stick'
     weight = '2lb'
     damage = '10hp'
+    prob = None
     def __init__(self):
         Item.__init__(self, name, desc, weight, damage, prob)
   
