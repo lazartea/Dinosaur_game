@@ -18,9 +18,9 @@ def createWorld():
     Room.connectRooms(c, "east", d, "west")
     Room.connectRooms(a, "north", c, "south")
     Room.connectRooms(b, "north", d, "south")
-    listthing = [Item("Rock","This is just a rock",15) for i in range(5)]
-    h = Item("Leaf", "This is just a leaf.",15)
-    c = Item("Boulder","A large boulder.",150)
+    listthing = [Item("Rock","This is just a rock",15,10,50) for i in range(5)]
+    h = Item("Leaf", "This is just a leaf.",15,0,0)
+    c = Item("Boulder","A large boulder.",150,100,10)
     for item in listthing:
         item.putInRoom(b)
     h.putInRoom(b)
