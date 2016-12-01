@@ -11,7 +11,7 @@ class Merchant:
         self.desc = desc
         self.amount = amount 
         self.weight = weight
-        self.itemlist = [ Item(self.kind,self.desc,self.weight) for i in range(self.amount) ]
+        self.itemlist = [ Item(self.kind,self.desc,self.weight,self.damage,self.prob) for i in range(self.amount) ]
         room.addMer(self)
         updater.register(self)
 
