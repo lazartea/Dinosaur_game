@@ -122,9 +122,15 @@ class Player:
 
     def eat(self, item):
         clear()
-        self.items.remove(item)
+        i = self.getItemByName(item)
+        h = self.location.getItemByName(item)
+        if i in self.items:
+            self.items.remove(i)
+        elif h in self.location.items:
+            self.location.removeItem(h)
+
         self.health += 1
-        item.location = None
+        
         print('Your health is now '+str(self.health))
         print()
         input("Press enter to continue...")
@@ -150,6 +156,7 @@ class Player:
         for i in self.items:
             if i.name.lower() == name.lower():
                 return i
+
         return False
 
 
