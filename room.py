@@ -1,8 +1,9 @@
 import random
 
 class Room:
-    def __init__(self, description):
+    def __init__(self, description, number):
         self.desc = description
+        self.number = number
         self.monsters = []
        
         #add charcters
