@@ -19,47 +19,43 @@ class Item:
         room.addItem(self)
 
 class Pistol(Item):
-    name = 'Pistol'
-    desc = 'A .357 Magnum Revolver'
-    weight = '2lb'
     health = '-50'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight)
+        Item.__init__(self, "Pistol", "A .357 Magnum Revolver", 2)
 
-class Sword(Item):
-    name = 'Sword'
-    desc = 'A long steel broadsword'
-    weight = '10lb'
-    health = '-40'
-    prob = None
+class Leaf(Item):
     def __init__(self):
-        Item.__init__(self, name, desc, weight)
+        Item.__init__(self,"Leaf", "This is just a leaf.",1)
+
+class Rock(Item):
+    def __init__(self):
+        Item.__init__(self,"Rock", "This is just a rock.",15)        
+
+class Boulder(Item):
+    def __init__(self):
+        Item.__init__(self,"Boulder", "A large boulder.",150)
+
+class Sword(Item): 
+    def __init__(self):
+        self.health = '-40'
+        Item.__init__(self, "Sword", "A long steel broadsword", 10)
         
 class Dagger(Item):
-    name = 'Dagger'
-    desc = 'A short dagger with emeralds embedded in the hilt'
-    weight = '1lb'
     health = '-15'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight)
+        Item.__init__(self, "Dagger", 'A short dagger with emeralds embedded in the hilt', 1)
         
-class Stick(Item):
-    name = 'Stick'
-    desc = 'A long branch from an oak tree. It is just a stick'
-    weight = '2lb'
+class Stick(Item): 
     health = '-10'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight)
+        Item.__init__(self, 'Stick', 'A long branch from an oak tree. It is just a stick', 2)
         
 class Armor(Item):
-    name = 'Armor'
-    desc = 'Dinosaur scale armor harvested from stegosaurus plates'
-    weight = '2lb'
     health = '+50'
     prob = None
     def __init__(self):
-        Item.__init__(self, name, desc, weight)
+        Item.__init__(self, "Armor", "Dinosaur scale armor harvested from stegosaurus plates", 20)
   
