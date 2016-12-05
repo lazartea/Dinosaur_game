@@ -1,5 +1,6 @@
 import random
 import updater
+from room import Room
 
 class Monster:
     def __init__(self, name, health, prob, damage):
@@ -12,25 +13,20 @@ class Monster:
         updater.register(self)
     def update(self):
         if random.random() < .5:
-            self.moveTo(self.loc.randomNeighbor())
+            room = self.loc.randomNeighbor()
+            self.moveTo(room)
 
-        if self.name == "Pterodactyl":
-            if random.random() < .2:
-                player.health -= 10
-                self.health += 10
-                player.money -= 10
-                print("A Pterodactyl swoops in and attacks. You lose 10 health and 10 money.")
 
     def putInRoom(self, room):
         self.loc = room
-        room.addMonster(self)
+        self.loc.addMonster(self)
 
-    def moveTo(self, loc):
+    def moveTo(self, room):
         self.loc.removeMonster(self)
         self.loc = room
-        loc.addMonster(self)
+        self.loc.addMonster(self)
     def die(self):
-        self.room.removeMonster(self)
+        self.loc.removeMonster(self)
         updater.deregister(self)
 
 class TRex(Monster):
