@@ -1,8 +1,8 @@
 from room import Room
 from player import Player
-from item import Item
-from monster import Monster
-
+from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf
+from monster import Monster, TRex, Pterodactyl
+import random
 from Character import Merchant
 import os
 import updater
@@ -11,27 +11,27 @@ import updater
 player = Player()
 
 def createWorld():
-    start = Room("You are in the forest. You are a dinosaur, born from a long lineage of dinosaurs.\nVines hang down to the forest floor from massive old-growth trees. You are hungry.\nYour parents were eaten by an Angry T-Rex. You are sad. You have options, however.\nYou are facing North and trees block you path forward, to the left, and behind you.\nYou can only turn right and make your way east towards your old home. \n\nLast you heard, the Angry T-Rex was headed for a Volcano on the other side of the island.\n\nType 'go east' to walk in this direction.")
-    f1 = Room("You walk east past junpiers and large boulders.\nYou traipse over a small trickling creek and see a hut with a thatched roof directly to the south.\n Smoke spirals out of a clay chimney and you can hear the sounds of a grunting dinosaur inside.\nThis must be the store that your parents went to before they were murdered by the Angry T-Rex.")
-    f2 = Room("You walk parallel to the stream and away from the hut and can hear pterodactyls crying from above.\nYou think of when you were a wee baby Dinosaur and when a pterodactly flew off with your baby brother.")
-    f3 = Room("You are in the thatched roof hut. Inside, there is a smarmy stegosaurus who looks like he wants to sell you something. There are a wide variety of items laid out on the table.\nThe hide of a sabertooth tiger is draped over a large dinosaur-sized chair next to the fireplace.")
-    f4 = Room("You walk deeper into the forest. You can no longer hear the trickle of the creek or see the smoke from the hut. The vines and undergrowth are very thick.")
-    f5 = Room("The forest seems to be thinning out. The sun is making its way successfully through the canopy and you feel happy again.")
-    f6 = Room("You come to the edge of the forest. Past the last of the ancient Junipers")
-    bstart = Room("You see a beach in the distance.")
-    b1 = Room("You are on the shore. You can head south and into the ocean to go for a swim.")
-    b2 = Room("You are in the water. The turqoise ocean feels good on your scaley feet. You submerge yourself in the water and feel refreshed.\nNow where is that Angry T-Rex?!")
-    b3 = Room("You are in the ocean. You look back to the shore and can see a cave to the east of the beach.\n A wall of cliffs block the way North from the beach. Maybe the Angry T-Rex is in there?\nYou are hungry for revenge.")
-    cstart = Room("You are at the mouth of a cavernous cave. The darkness is impenetrable, but you are not scared. This is the only way to avenge your family.")
-    c1 = Room("You are inside the cave now and you fumble around blindly knocking into the walls... it looks like there is open space to the East and to the North...")
-    c2 = Room("You hit a dead end. A pile of bones in the corner weighs heavily on your mind. You look to the east and see a rock wall dripping with slime. You must turn back.")
-    c3 = Room("You see something bright in the distance of the cave. Your eyes were just beginning to adjust to the darkness and you are blinded.\nYou imagine the Angry T-Rex getting lost in the same cave and your resolve to avenge your parents strenthens.")
-    c4 = Room("You are still in a in a cave. The darkness is overwhelming. You accidentally crush a skull with your foot.")
-    dstart = Room("You are on a volcano. You look to the west and see the mouth of the cave that you nearly got lost in. To the east a volcano towers over you.")
-    d1 = Room("You are on the summit a volcano. You walk on the edge of the crater and view the pulsing lava below.")
-    d2 = Room("You move to the side of the volcana slope and can see a river of molten lava.")
-    d3 = Room("A waterfall of crystal clear water is cascading off of the edge of the volcano and onto a lava field, evaporating instantly upon contact.")
-
+    start = Room("You are in the forest. You are a dinosaur, born from a long lineage of dinosaurs.\nVines hang down to the forest floor from massive old-growth trees. You are hungry.\nYour parents were eaten by an Angry T-Rex. You are sad. You have options, however.\nYou are facing North and trees block you path forward, to the left, and behind you.\nYou can only turn right and make your way east towards your old home. \n\nLast you heard, the Angry T-Rex was headed for a Volcano on the other side of the island.\n\nType 'go east' to walk in this direction.","F")
+    f1 = Room("You walk east past junpiers and large boulders.\nYou traipse over a small trickling creek and see a hut with a thatched roof directly to the south.\n Smoke spirals out of a clay chimney and you can hear the sounds of a grunting dinosaur inside.\nThis must be the store that your parents went to before they were murdered by the Angry T-Rex.","F1")
+    f2 = Room("You walk parallel to the stream and away from the hut and can hear pterodactyls crying from above.\nYou think of when you were a wee baby Dinosaur and when a pterodactly flew off with your baby brother.","F2")
+    f3 = Room("You are in the thatched roof hut. Inside, there is a smarmy stegosaurus who looks like he wants to sell you something. There are a wide variety of items laid out on the table.\nThe hide of a sabertooth tiger is draped over a large dinosaur-sized chair next to the fireplace.","F3")
+    f4 = Room("You walk deeper into the forest. You can no longer hear the trickle of the creek or see the smoke from the hut. The vines and undergrowth are very thick.","F4")
+    f5 = Room("The forest seems to be thinning out. The sun is making its way successfully through the canopy and you feel happy again.","F5")
+    f6 = Room("You come to the edge of the forest. Past the last of the ancient Junipers","F6")
+    bstart = Room("You see a beach in the distance.","B")
+    b1 = Room("You are on the shore. You can head south and into the ocean to go for a swim.","B1")
+    b2 = Room("You are in the water. The turqoise ocean feels good on your scaley feet. You submerge yourself in the water and feel refreshed.\nNow where is that Angry T-Rex?!","B2")
+    b3 = Room("You are in the ocean. You look back to the shore and can see a cave to the east of the beach.\n A wall of cliffs block the way North from the beach. Maybe the Angry T-Rex is in there?\nYou are hungry for revenge.","B3")
+    cstart = Room("You are at the mouth of a cavernous cave. The darkness is impenetrable, but you are not scared. This is the only way to avenge your family.","C")
+    c1 = Room("You are inside the cave now and you fumble around blindly knocking into the walls... it looks like there is open space to the East and to the North...","C1")
+    c2 = Room("You hit a dead end. A pile of bones in the corner weighs heavily on your mind. You look to the east and see a rock wall dripping with slime. You must turn back.","C2")
+    c3 = Room("You see something bright in the distance of the cave. Your eyes were just beginning to adjust to the darkness and you are blinded.\nYou imagine the Angry T-Rex getting lost in the same cave and your resolve to avenge your parents strenthens.","C3")
+    c4 = Room("You are still in a in a cave. The darkness is overwhelming. You accidentally crush a skull with your foot.","C4")
+    dstart = Room("You are on a volcano. You look to the west and see the mouth of the cave that you nearly got lost in. To the east a volcano towers over you.","V")
+    d1 = Room("You are on the summit a volcano. You walk on the edge of the crater and view the pulsing lava below.","V1")
+    d2 = Room("You move to the side of the volcana slope and can see a river of molten lava.","V2")
+    d3 = Room("A waterfall of crystal clear water is cascading off of the edge of the volcano and onto a lava field, evaporating instantly upon contact.","V3")
+    AllRooms = [start,f1,f2,f3,f4,f5,f6,bstart,b1,b2,b3,cstart,c1,c2,c3,c4,dstart,d1,d2,d3]
 
     Room.connectRooms(start, "east", f1, "west")
     Room.connectRooms(f1, "north", f2, "south")
@@ -56,18 +56,24 @@ def createWorld():
     Room.connectRooms(d1,"north",d2,"south")
     Room.connectRooms(d1,"south",d3,"north")
 
-    listthing = [Item("Rock","This is just a rock",15) for i in range(5)]
-    h = Item("Leaf", "This is just a leaf.",15)
-    c = Item("Boulder","A large boulder.",150)
-    for item in listthing:
-        item.putInRoom(start)
-    h.putInRoom(start)
-    c.putInRoom(start)
+    rocks = [Rock() for i in range(5)]
+    leaves = [Leaf() for i in range(10)]
+    sticks = [Stick() for i in range(3)]
+    #adds rocks, sticks, and leaves randomly to rooms
+    for item in leaves:
+        item.putInRoom(random.choice(AllRooms))
+    for item in sticks:
+        item.putInRoom(random.choice(AllRooms))
+    for item in rocks:
+        item.putInRoom(random.choice(AllRooms))
+    
     player.location = start
-    Monster("Angry T-Rex", 100, d3, .5, 25)
-    Monster("Pterodactyl", 100, start, .5, 25)
+    monsters = [Pterodactyl() for i in range(3)]
+    monsters.append(TRex())
+    for item in monsters:
+        item.putInRoom(random.choice(AllRooms))
     inventory_dict = {}
-    inventory_list = [Item("spear","A long wooden spear with a Velociraptor tooth on the end. Increases your damage during a fight.",25), Item("Dagger","A sharp blade. Increases your damage during a fight with a small dinosaur.",5), Item("Pistol","Allows you to damage dinosaurs in a fight without the risk of retaliation. Only able to be used once.",15), Item("Sword","Increases your damage during a fight.",25), Item("Anvil","Very heavy.",10000000), Item("Cigarettes","Decreases your health.",1),Item("armor","Protects you from damage during a fight. Can only be used once.",50)]
+    inventory_list = [Sword(), Dagger(), Pistol(), Armor(),Stick(),Leaf()]
     for item in inventory_list:
         inventory_dict[item] = item.weight * 2
     Merchant("Stegosaurus", inventory_dict, f3)
@@ -103,12 +109,18 @@ def printSituation():
 def showHelp():
     clear()
     print("go <direction> -- moves you in the given direction")
+    print("wait -- passes time")
+    print("eat <object> -- eats an item and increases health")
+    print("inspect <item> -- gives item discription")
     print("inventory -- opens your inventory")
+    print("drop <item> -- drops the item")
     print("pickup <item> -- picks up the item")
     print("talk <character> -- talks to character")
     print("buy <item> -- buys the item")
     print("attack <monster> -- attacks monster")
     print("me -- lists stats")
+    print("exit -- ends the game")
+    print("map -- displays a map with your location marked")
     print()
     input("Press enter to continue...")
 
@@ -127,9 +139,9 @@ while playing and player.alive:
         if commandWords[0].lower() == "go":   #cannot handle multi-word directions
             player.goDirection(commandWords[1]) 
             timePasses = True
-        elif commandWords[0].lower() == "wait": 
+        elif commandWords[0].lower() == "wait": #time passes
             timePasses = True
-        elif commandWords[0].lower() == "inspect":
+        elif commandWords[0].lower() == "inspect": #inspects item
             targetName = command[8:]
             target = player.location.getItemByName(targetName)
             if target != False:
@@ -137,6 +149,16 @@ while playing and player.alive:
             else:
                 print("No such item.")
                 commandSuccess = False
+        elif commandWords[0].lower() == "map": #prints a map to the terminal with the player's location
+            file_object = open("map.txt","r")
+            print()
+            print(file_object.read())
+            print()
+            print("You are in " + player.location.number + ".")
+            print()
+            file_object.close()
+            timePasses = True
+            input("Press enter to continue...")
 
         elif commandWords[0].lower() == "pickup":  #can handle multi-word objects
             targetName = command[7:]
@@ -146,7 +168,8 @@ while playing and player.alive:
             else:
                 print("No such item.")
                 commandSuccess = False
-        elif commandWords[0].lower() == "drop":  
+
+        elif commandWords[0].lower() == "drop":  #drops the specified item
             targetName = command[5:]
             target = player.getItemByName(targetName)
             if target != False:
@@ -154,13 +177,13 @@ while playing and player.alive:
             else:
                 print("No such item.")
                 commandSuccess = False
-        elif commandWords[0].lower() == "inventory":
+        elif commandWords[0].lower() == "inventory": #shows the player's inventory
             player.showInventory()        
-        elif commandWords[0].lower() == "help":
+        elif commandWords[0].lower() == "help": #lists commands
             showHelp()
-        elif commandWords[0].lower() == "exit":
+        elif commandWords[0].lower() == "exit": #ends the game
             playing = False
-        elif commandWords[0].lower() == "attack":
+        elif commandWords[0].lower() == "attack": #attacks the specified monster
             targetName = command[7:]
             target = player.location.getMonsterByName(targetName)
             if target != False:
@@ -168,18 +191,19 @@ while playing and player.alive:
             else:
                 print("No such monster.")
                 commandSuccess = False
-        elif commandWords[0].lower() == "eat":
+        elif commandWords[0].lower() == "eat": #eats an item
             targetName = command[4:]
             target = player.getItemByName(targetName)
-            if target != True:
-                player.eat(target)
+            target2 = player.location.getItemByName(targetName)
+            if target != False or target2 != False:
+                player.eat(targetName)
             else:
                 print (targetName)
                 print("No such item.")
                 commandSuccess = False
 
 
-        elif commandWords[0].lower() == "talk":
+        elif commandWords[0].lower() == "talk": #talks to a character
             targetName = command[5:]
             target = player.location.getMerByName(targetName)
             if target != False:
@@ -192,7 +216,7 @@ while playing and player.alive:
                 print("No such merchant.")
                 commandSuccess = False
 
-        elif commandWords[0].lower() == "me":
+        elif commandWords[0].lower() == "me": #lists stats
             player.status()
 
         else:
