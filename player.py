@@ -43,8 +43,8 @@ class Player:
             print()
             input("Press enter to continue...")
         else:
-            if random.random() > .25:
-                self.health += 1
+            if random.random() < .25:
+                self.health += 5
                 clear()
                 print("Time has passed and you have gained 1 health. You feel slightly rejuvenated.")
                 print()
