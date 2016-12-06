@@ -1,5 +1,6 @@
 import os
 from item import Item
+import updater
 import random
 
 def clear():
@@ -14,20 +15,31 @@ class Player:
         self.money = 100
         self.health = 100
         self.alive = True
+        updater.register(self)
 
     def goDirection(self, direction):
         if self.location.getDestination(direction) == None:
-            return
+            print()
+            print("Not a valid direction.")
+            input("Press enter to continue...")
         else:
             self.location = self.location.getDestination(direction)  
 
     def update(self):
         if self.health < 50:
                 self.strength -= 1
-                print("You are injured. You have lost strength.") 
+                clear()
+                print()
+                print("You are injured. You have lost strength.")
+                print()
+                input("Press enter to continue...") 
         else:
             if random.random() > .5:
                 self.health += 1
+                clear()
+                print("You have gained health.")
+                print()
+                input("Press enter to continue...")
 
 
     def pickup(self, item):
@@ -69,7 +81,7 @@ class Player:
         print("Total weight:"+str(self.item_weight))
         print()
         input("Press enter to continue...")
-    def attackMonster(self, mon):
+    def attackMonster(self, mon, weapon):
         clear()
         print("You are attacking " + mon.name)
         print()
@@ -87,7 +99,7 @@ class Player:
                 self.alive = False
             
         else:
-            mon.health -= mon.damage
+            mon.health += weapon.impact
             print("You injure the " + mon.name)
             print("Your health is " + str(self.health)+".")
             print("The "+ mon.name + "'s health is " + str(mon.health)+".")
@@ -129,7 +141,7 @@ class Player:
         elif h in self.location.items:
             self.location.removeItem(h)
 
-        self.health += 1
+        self.health += item.impact
         
         print('Your health is now '+str(self.health))
         print()
@@ -137,6 +149,8 @@ class Player:
 
     def buy(self,item,mer):
         clear()
+        
+        
         if mer.inven[item] > self.money:
             print("You do not have enough money.")
             input("Press enter to continue...")
