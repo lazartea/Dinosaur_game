@@ -144,8 +144,7 @@ class Player:
         print("money: " + str(self.money))
         print()
         input("Press enter to continue...")
-
-            input("Press enter to continue...")
+        
     def eat(self, item):
         clear()
         if item in self.items:
