@@ -31,14 +31,18 @@ class Player:
     def update(self):
         if self.getItemByName("Armor") != False:
             self.armor = True 
+
         if self.win == True:
             clear()
             print("You are have won the game. You are a great asset to humankind.")
             file_object = open("victory_screen.txt","r")
-    -       print()
-    -       print(file_object.read())
-    -       print()
-    -       file_object.close()
+            print()
+            print(file_object.read())
+            print()
+            file_object.close()
+            input("Press enter to continue...")
+            exit()
+
         if self.health < 50:
             if self.armor == False: #armor protects you from injury
                 self.strength -= 1
@@ -71,6 +75,7 @@ class Player:
             item.loc = self
             self.location.removeItem(item)
             self.item_weight += item.weight
+            self.update()
         else:
             print()
             self.health -= 10
@@ -132,17 +137,22 @@ class Player:
             
         else:
             mon.health += weapon.impact
-            print("You injure the " + mon.name)
-            print("Your health is " + str(self.health)+".")
-            print("The "+ mon.name + "'s health is " + str(mon.health)+".")
+            
             if mon.health <= 0:
                 mon.die()
-                print("You win. Your health is now " + str(self.health) + ".")
-                print("You have gained 5 strength points.")
-                self.strength += 5
-                self.location.addLoot(self)
                 if mon.name == "Angry T-Rex":
                     self.win = True 
+                    self.update()
+                else:
+                    print("You kill the " + mon.name +". Your health is now " + str(self.health) + ".")
+                    print("You have gained 5 strength points.")
+                    self.strength += 5
+                    self.location.addLoot(self)
+                
+            else:
+                print("You injure the " + mon.name)
+                print("Your health is " + str(self.health)+".")
+                print("The "+ mon.name + "'s health is " + str(mon.health)+".")
         
         print()
         input("Press enter to continue...")
