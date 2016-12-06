@@ -23,7 +23,7 @@ class Pistol(Item):
     health = '-50'
     prob = None
     def __init__(self):
-        Item.__init__(self, "Pistol", "A .357 Magnum Revolver", 30,-25)
+        Item.__init__(self, "Pistol", "A .357 Magnum Revolver. 25 damage.", 30,-25)
 
 class Cigarette(Item):
     def __init__(self):
@@ -35,28 +35,27 @@ class Leaf(Item):
 
 class Rock(Item):
     def __init__(self):
-        Item.__init__(self,"Rock", "This is just a rock.",15,-3)        
+        Item.__init__(self,"Rock", "This is just a rock. 3 damage.",15,-3)        
 
 class Boulder(Item):
     def __init__(self):
-        Item.__init__(self,"Boulder", "A large boulder.",150,-25)
+        Item.__init__(self,"Boulder", "A large boulder. 25 damage.",150,-25)
 
 class Sword(Item): 
     def __init__(self):
-        
-        Item.__init__(self, "Sword", "A long steel broadsword", 20,-40)
+        Item.__init__(self, "Sword", "A long steel broadsword. 40 damange.", 20,-40)
         
 class Dagger(Item):
     def __init__(self):
-        Item.__init__(self, "Dagger", 'A short dagger with emeralds embedded in the hilt', 10,-15)
+        Item.__init__(self, "Dagger", 'A short dagger with emeralds embedded in the hilt. 15 damage.', 10,-15)
         
 class Stick(Item): 
     def __init__(self):
-        Item.__init__(self, 'Stick', 'A long branch from an oak tree. It is just a stick', 2,-10)
+        Item.__init__(self, 'Stick', 'A long branch from an oak tree. 10 damage.', 2,-10)
         
 class Armor(Item):
     def __init__(self):
-        Item.__init__(self, "Armor", "Dinosaur scale armor harvested from stegosaurus plates", 20,50)
+        Item.__init__(self, "Armor", "Dinosaur scale armor harvested from stegosaurus plates.", 20,50)
 
 class Money(Item):
     def __init__(self):
