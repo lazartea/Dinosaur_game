@@ -107,7 +107,8 @@ class Player:
             print("Your health is " + str(self.health)+".")
             print("The "+ mon.name + "s health is " + str(mon.health) +".")
             if self.health <= 0:
-                print("You lose.")
+                print("You lose. You are dead. You met the same sorry fate as your parents.")
+                input("Press enter to continue...")
                 self.alive = False
             
         else:
