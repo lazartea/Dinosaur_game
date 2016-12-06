@@ -140,8 +140,22 @@ while playing and player.alive:
         command = input("What now? ")
         commandWords = command.split()
         if commandWords[0].lower() == "go":   #cannot handle multi-word directions
-            player.goDirection(commandWords[1]) 
-            timePasses = True
+
+            if commandWords[1][0].lower() == 's': #allows for abbreviations
+                player.goDirection("south") 
+                timePasses = True 
+            elif commandWords[1][0].lower() == 'n':
+                player.goDirection("north") 
+                timePasses = True
+            elif commandWords[1][0].lower() == 'w':
+                player.goDirection("west") 
+                timePasses = True
+            elif commandWords[1][0].lower() == 'e':
+                player.goDirection("east") 
+                timePasses = True
+            else:
+                player.goDirection(commandWords[1]) 
+                timePasses = True
         elif commandWords[0].lower() == "wait": #time passes
             timePasses = True
         elif commandWords[0].lower() == "inspect": #inspects item
