@@ -29,7 +29,7 @@ def createWorld():
     c4 = Room("You are still in a in a cave. The darkness is overwhelming. You accidentally crush a skull with your foot.","C4")
     dstart = Room("You are on a volcano. You look to the west and see the mouth of the cave that you nearly got lost in. To the east a volcano towers over you.","V")
     d1 = Room("You are on the summit a volcano. You walk on the edge of the crater and view the pulsing lava below.","V1")
-    d2 = Room("You move to the side of the volcana slope and can see a river of molten lava.","V2")
+    d2 = Room("You move to the side of the volcano slope and can see a river of molten lava.","V2")
     d3 = Room("A waterfall of crystal clear water is cascading off of the edge of the volcano and onto a lava field, evaporating instantly upon contact.","V3")
     AllRooms = [start,f1,f2,f3,f4,f5,f6,bstart,b1,b2,b3,cstart,c1,c2,c3,c4,dstart,d1,d2,d3]
 
