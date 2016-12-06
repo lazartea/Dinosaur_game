@@ -1,7 +1,7 @@
 from room import Room
 from player import Player
 from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf
-from monster import Monster, TRex, Pterodactyl
+from monster import Monster, TRex, Pterodactyl, Sarcosuchus, Allosaurus, Spinosaurus
 import random
 from Character import Merchant
 import os
