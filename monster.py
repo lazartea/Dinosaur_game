@@ -36,3 +36,15 @@ class TRex(Monster):
 class Pterodactyl(Monster):
     def __init__(self):
         Monster.__init__(self,"Pterodactyl",100, .25, 10)
+
+class Spinosaurus(Monster):
+    def __init__(self):
+        Monster.__init__(self,"Spinosaurus",200, .90, 5)
+        
+class Allosaurus(Monster):
+    def __init__(self):
+        Monster.__init__(self,"Allosaurus",150, .80, 15)
+        
+class Sarcosuchus(Monster):
+    def __init__(self):
+        Monster.__init__(self,"Sarcosuchus",115, .60, 15)
