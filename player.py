@@ -68,6 +68,7 @@ class Player:
     def drop(self, item):
         self.items.remove(item)
         self.location.addItem(item)
+        self.item_weight -= item.weight
         print("You have dropped " +item.name)
     def inspect(self,item):
         print(item.desc)
