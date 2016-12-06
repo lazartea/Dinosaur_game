@@ -16,6 +16,7 @@ class Player:
         self.health = 100
         self.alive = True
         self.win = False
+        self.armor = False
         self.leveluplist = [150,200,250,300,350,450,550]
         updater.register(self)
 
@@ -28,7 +29,18 @@ class Player:
             self.location = self.location.getDestination(direction)  
 
     def update(self):
+        if self.getItemByName("Armor") != False:
+            self.armor = True 
+        if self.win == True:
+            clear()
+            print("You are have won the game. You are a great asset to humankind.")
+            file_object = open("victory_screen.txt","r")
+    -       print()
+    -       print(file_object.read())
+    -       print()
+    -       file_object.close()
         if self.health < 50:
+            if self.armor == False: #armor protects you from injury
                 self.strength -= 1
                 clear()
                 print()
@@ -49,12 +61,7 @@ class Player:
                 print("Time has passed and you have gained 1 health. You feel slightly rejuvenated.")
                 print()
                 input("Press enter to continue...")
-            if self.win == True:
-                file_object = open("victory_screen.txt","r")
-                print()
-                print(file_object.read())
-                print()
-                file_object.close()
+            
 
 
     def pickup(self, item):
@@ -69,14 +76,17 @@ class Player:
             self.health -= 10
             print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
             input("Press enter to continue...")
+
     def drop(self, item):
         self.items.remove(item)
         self.location.addItem(item)
         self.item_weight -= item.weight
         print("You have dropped " +item.name)
+
     def inspect(self,item):
         print(item.desc)
         input("Press enter to continue...")
+
     def showInventory(self):
         clear()
         print("You are currently carrying:")
@@ -97,6 +107,7 @@ class Player:
         print("Total weight:"+str(self.item_weight))
         print()
         input("Press enter to continue...")
+
     def attackMonster(self, mon, weapon):
         clear()
         print("You are attacking " + mon.name)
@@ -106,14 +117,18 @@ class Player:
         print()
     
         if random.random() < mon.prob:
-            self.health -= mon.damage
-            print("The " + mon.name +" injures you.")
-            print("Your health is " + str(self.health)+".")
-            print("The "+ mon.name + "s health is " + str(mon.health) +".")
-            if self.health <= 0:
-                print("You lose. You are dead. You met the same sorry fate as your parents.")
+            if self.armor != True:
+                self.health -= mon.damage
+                print("The " + mon.name +" injures you.")
+                print("Your health is " + str(self.health)+".")
+                print("The "+ mon.name + "s health is " + str(mon.health) +".")
+                if self.health <= 0:
+                    print("You lose. You are dead. You met the same sorry fate as your parents.")
+                    input("Press enter to continue...")
+                    self.alive = False
+            else:
+                print("The " + mon.name +" tries to attack you. Your armor protects you.")
                 input("Press enter to continue...")
-                self.alive = False
             
         else:
             mon.health += weapon.impact
@@ -127,8 +142,8 @@ class Player:
                 self.strength += 5
                 self.location.addLoot(self)
                 if mon.name == "Angry T-Rex":
-                    self.win = True
-                    
+                    self.win = True 
+        
         print()
         input("Press enter to continue...")
 
@@ -137,6 +152,9 @@ class Player:
         print("You walk up to "+ mer.name+".")
         print()
         print(mer.name+" has the following items for sale: ")
+        inv_dict = {}
+
+        
         for item in mer.inven:
             print(item.name+": "+item.desc+" Price: "+str(mer.inven[item]))
         
@@ -148,6 +166,8 @@ class Player:
         print("health: " + str(self.health))
         print("strength: " + str(self.strength))
         print("money: " + str(self.money))
+        if self.armor != False:
+            print("You are wearing armor.")
         print()
         input("Press enter to continue...")
         
