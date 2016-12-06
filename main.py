@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf
+from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf, Money
 from monster import Monster, TRex, Pterodactyl, Sarcosuchus, Allosaurus, Spinosaurus
 import random
 from Character import Merchant
@@ -59,8 +59,12 @@ def createWorld():
     rocks = [Rock() for i in range(5)]
     leaves = [Leaf() for i in range(10)]
     sticks = [Stick() for i in range(3)]
-    #adds rocks, sticks, and leaves randomly to rooms
+    coins = [Money() for i in range(15)]
+
+    #adds rocks, sticks, coins, and leaves randomly to rooms
     for item in leaves:
+        item.putInRoom(random.choice(AllRooms))
+    for item in coins:
         item.putInRoom(random.choice(AllRooms))
     for item in sticks:
         item.putInRoom(random.choice(AllRooms))
@@ -181,7 +185,11 @@ while playing and player.alive:
             targetName = command[7:]
             target = player.location.getItemByName(targetName)
             if target != False:
-                player.pickup(target)
+                if targetName.lower() == "money": #money isn't added to your inventory
+                    player.money += 1
+                    player.location.items.remove(target) #once it is used, it disappears
+                else:
+                    player.pickup(target)
             else:
                 print("No such item.")
                 commandSuccess = False
