@@ -29,9 +29,11 @@ class Player:
             self.location = self.location.getDestination(direction)  
 
     def update(self):
+        #armor condition
         if self.getItemByName("Armor") != False:
             self.armor = True 
 
+        #win condition:
         if self.win == True:
             clear()
             print("You are have won the game. You are a great asset to humankind.")
@@ -43,6 +45,20 @@ class Player:
             input("Press enter to continue...")
             exit()
 
+        #lose condition:
+        if self.health <= 0:
+            self.alive = False
+
+        if self.alive == False:
+            clear()
+            print()
+            print("Your health has reached an unrecoverable level. You die.")
+            print()
+            print("The end.")
+            print()
+            exit()
+
+        #injured condition:
         if self.health < 50:
             if self.armor == False: #armor protects you from injury
                 self.strength -= 1
@@ -51,6 +67,8 @@ class Player:
                 print("You are injured. You have lost strength.")
                 print()
                 input("Press enter to continue...") 
+
+        #levelup condition:
         elif self.health in self.leveluplist:
             clear()
             print()
@@ -58,13 +76,22 @@ class Player:
             self.strength += 10
             print()
             input("Press enter to continue...")
+
         else:
+
             if random.random() < .25:
                 self.health += 5
                 clear()
                 print("Time has passed and you have gained 1 health. You feel slightly rejuvenated.")
                 print()
                 input("Press enter to continue...")
+            else:
+            #random events (in an else because you can't gain health and lose it on the same turn)
+                if random.random() < .1:
+                    print("A Pterodactyl swoops in and attacks. You lose 10 health.")
+                    self.health -= 10
+                    input("Press enter to continue...")
+                    self.update()
             
 
 
@@ -148,6 +175,7 @@ class Player:
                     print("You have gained 5 strength points.")
                     self.strength += 5
                     self.location.addLoot(self)
+                    self.location.addItem(random.choice([Leaf(),Dagger(),Leaf(),Leaf(),Leaf(),Leaf()])) #######Just Added this for loot?
                 
             else:
                 print("You injure the " + mon.name)
