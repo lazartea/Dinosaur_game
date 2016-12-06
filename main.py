@@ -69,7 +69,8 @@ def createWorld():
     
     player.location = start
     monsters = [Pterodactyl() for i in range(3)]
-    monsters.append(TRex())
+    rex = TRex()
+    rex.putInRoom(d2)
     monsters.append(Sarcosuchus())
     monsters.append(Allosaurus())
     monsters.append(Spinosaurus())
