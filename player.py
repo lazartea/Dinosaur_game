@@ -15,6 +15,7 @@ class Player:
         self.money = 100
         self.health = 100
         self.alive = True
+        self.win = False
         updater.register(self)
 
     def goDirection(self, direction):
@@ -40,6 +41,8 @@ class Player:
                 print("You have gained health.")
                 print()
                 input("Press enter to continue...")
+            if self.win == True:
+                print("You are have won the game. You are a great asset to humankind.")
 
 
     def pickup(self, item):
@@ -109,6 +112,8 @@ class Player:
                 print("You have gained 5 strength points.")
                 self.strength += 5
                 self.location.addLoot(self)
+                if mon.name == "Angry T-Rex":
+                    self.win = True 
         
         print()
         input("Press enter to continue...")
