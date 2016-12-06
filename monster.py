@@ -31,20 +31,20 @@ class Monster:
 
 class TRex(Monster):
     def __init__(self):
-        Monster.__init__(self,"Angry T-Rex",250, .50, 20)
+        Monster.__init__(self,"Angry T-Rex",200, .45, 20)
 
 class Pterodactyl(Monster):
     def __init__(self):
-        Monster.__init__(self,"Pterodactyl",100, .25, 10)
+        Monster.__init__(self,"Pterodactyl",100, .15, 10)
 
 class Spinosaurus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Spinosaurus",200, .35, 5)
+        Monster.__init__(self,"Spinosaurus",160, .25, 5)
         
 class Allosaurus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Allosaurus",150, .40, 12)
+        Monster.__init__(self,"Allosaurus",150, .30, 12)
         
 class Sarcosuchus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Sarcosuchus",115, .40, 11)
+        Monster.__init__(self,"Sarcosuchus",115, .30, 11)
