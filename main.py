@@ -70,6 +70,10 @@ def createWorld():
     player.location = start
     monsters = [Pterodactyl() for i in range(3)]
     monsters.append(TRex())
+    monsters.append(Sarcosuchus())
+    monsters.append(Allosaurus())
+    monsters.append(Spinosaurus())
+    
     for item in monsters:
         item.putInRoom(random.choice(AllRooms))
     inventory_dict = {}
