@@ -31,7 +31,7 @@ class Monster:
 
 class TRex(Monster):
     def __init__(self):
-        Monster.__init__(self,"Angry T-Rex",200, .01, 20)
+        Monster.__init__(self,"Angry T-Rex",200, .40, 20)
 
 class Pterodactyl(Monster):
     def __init__(self):
