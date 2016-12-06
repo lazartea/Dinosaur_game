@@ -170,6 +170,7 @@ while playing and player.alive:
                 print("No such item.")
                 commandSuccess = False
         elif commandWords[0].lower() == "map": #prints a map to the terminal with the player's location
+            clear()
             file_object = open("map.txt","r")
             print()
             print(file_object.read())
