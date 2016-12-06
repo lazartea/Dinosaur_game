@@ -16,6 +16,7 @@ class Player:
         self.health = 100
         self.alive = True
         self.win = False
+        self.leveluplist = [150,200,250,300,350,450,550]
         updater.register(self)
 
     def goDirection(self, direction):
@@ -34,6 +35,13 @@ class Player:
                 print("You are injured. You have lost strength.")
                 print()
                 input("Press enter to continue...") 
+        elif self.health in self.leveluplist:
+            clear()
+            print()
+            print("Your health is so high that you have leveled up! Your strength has increased by 10.")
+            self.strength += 10
+            print()
+            input("Press enter to continue...")
         else:
             if random.random() > .5:
                 self.health += 1
