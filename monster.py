@@ -12,7 +12,7 @@ class Monster:
         
         updater.register(self)
     def update(self):
-        if random.random() < .5:
+        if random.random() < .5 and self.name != "Angry T-Rex":
             room = self.loc.randomNeighbor()
             self.moveTo(room)
 
