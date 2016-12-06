@@ -46,7 +46,7 @@ class Player:
             if random.random() > .5:
                 self.health += 1
                 clear()
-                print("You have gained health.")
+                print("Time has passed and you have gained 1 health. You feel slightly rejuvenated.")
                 print()
                 input("Press enter to continue...")
             if self.win == True:
