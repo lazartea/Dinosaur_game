@@ -25,6 +25,10 @@ class Pistol(Item):
     def __init__(self):
         Item.__init__(self, "Pistol", "A .357 Magnum Revolver", 30,-25)
 
+class Cigarette(Item):
+    def __init__(self):
+        Item.__init__(self,"Cigarette","A Cigarette.",1,-5)
+
 class Leaf(Item):
     def __init__(self):
         Item.__init__(self,"Leaf", "Food can increase your health.",1,1)
