@@ -123,7 +123,12 @@ class Player:
                 self.strength += 5
                 self.location.addLoot(self)
                 if mon.name == "Angry T-Rex":
-                    self.win = True 
+                    self.win = True
+                    file_object = open("victory_screen.txt","r")
+                    print()
+                    print(file_object.read())
+                    print()
+                    file_object.close()
         
         print()
         input("Press enter to continue...")
