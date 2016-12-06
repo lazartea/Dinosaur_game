@@ -128,8 +128,6 @@ def showHelp():
     print()
     input("Press enter to continue...")
 
-
-
 createWorld()
 playing = True
 while playing and player.alive:
@@ -191,11 +189,18 @@ while playing and player.alive:
             targetName = command[7:]
             target = player.location.getMonsterByName(targetName)
             if target != False:
-                player.attackMonster(target)
+                command = input("Which weapon? ")
+                target2 = player.getItemByName(command)
+                
+                if target2 != False:
+                    player.attackMonster(target,target2)
+                else:
+                    print("Not a valid weapon.")
+                    input("Press enter to continue...")
             else:
                 print("No such monster.")
                 commandSuccess = False
-        elif commandWords[0].lower() == "eat": #eats an item
+        elif commandWords[0].lower() == "eat": #eats an item (can lower your health if it's a nonfood item)
             targetName = command[4:]
             target = player.getItemByName(targetName)
             target2 = player.location.getItemByName(targetName)
@@ -213,8 +218,9 @@ while playing and player.alive:
             if target != False:
                 player.talkMer(target)
                 command = input("What do you want to buy? ")
-                target2 = target.getItemByName(command)
-                t = player.buy(target2,target)
+                target2 = target.getItemByName(command.lower())
+                if target2 != False:
+                    t = player.buy(target2,target)
 
             else:
                 print("No such merchant.")
