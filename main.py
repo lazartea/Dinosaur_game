@@ -125,7 +125,6 @@ def showHelp():
     print("drop <item> -- drops the item")
     print("pickup <item> -- picks up the item")
     print("talk <character> -- talks to character")
-    print("buy <item> -- buys the item")
     print("attack <monster> -- attacks monster")
     print("me -- displays stats")
     print("exit -- ends the game")
