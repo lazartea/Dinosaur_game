@@ -132,17 +132,16 @@ class Player:
         print()
         input("Press enter to continue...")
 
+            input("Press enter to continue...")
     def eat(self, item):
         clear()
-        i = self.getItemByName(item)
-        h = self.location.getItemByName(item)
-        if i in self.items:
-            self.items.remove(i)
-        elif h in self.location.items:
-            self.location.removeItem(h)
+        if item in self.items:
+            self.items.remove(item)
+        elif item in self.location.items:
+            self.location.removeItem(item)
 
         self.health += item.impact
-        
+
         print('Your health is now '+str(self.health))
         print()
         input("Press enter to continue...")
