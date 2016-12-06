@@ -1,6 +1,6 @@
 from room import Room
 from player import Player
-from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf, Money
+from item import Dagger, Rock, Boulder, Stick, Armor, Pistol, Sword, Item, Leaf, Money, Cigarette
 from monster import Monster, TRex, Pterodactyl, Sarcosuchus, Allosaurus, Spinosaurus
 import random
 from Character import Merchant
@@ -60,6 +60,7 @@ def createWorld():
     leaves = [Leaf() for i in range(10)]
     sticks = [Stick() for i in range(3)]
     coins = [Money() for i in range(15)]
+    
 
     #adds rocks, sticks, coins, and leaves randomly to rooms
     for item in leaves:
@@ -73,16 +74,19 @@ def createWorld():
     
     player.location = start
     monsters = [Pterodactyl() for i in range(3)]
-    rex = TRex()
-    rex.putInRoom(d2)
+    rex = TRex() 
+    rex.putInRoom(d2) #TRex is the final monster, so he's at the end of the map
     monsters.append(Sarcosuchus())
     monsters.append(Allosaurus())
     monsters.append(Spinosaurus())
-    
+    x = Armor()
+    x.putInRoom(start)
     for item in monsters:
         item.putInRoom(random.choice(AllRooms))
     inventory_dict = {}
-    inventory_list = [Sword(), Dagger(), Pistol(), Armor(),Stick(),Leaf()]
+
+    inventory_list = [Sword(), Dagger(), Pistol(), Armor(),Stick(),Leaf(),Cigarette()]
+    
     for item in inventory_list:
         inventory_dict[item] = item.weight * 2
     Merchant("Stegosaurus", inventory_dict, f3)
@@ -142,120 +146,127 @@ while playing and player.alive:
         commandSuccess = True
         command = input("What now? ")
         commandWords = command.split()
-        if commandWords[0].lower() == "go":   #cannot handle multi-word directions
+        if len(commandWords) > 0: #fixes error where game crashes if you press enter without a command
+            
+            if commandWords[0].lower() == "go":   #cannot handle multi-word directions
 
-            if commandWords[1][0].lower() == 's': #allows for abbreviations
-                player.goDirection("south") 
-                timePasses = True 
-            elif commandWords[1][0].lower() == 'n':
-                player.goDirection("north") 
-                timePasses = True
-            elif commandWords[1][0].lower() == 'w':
-                player.goDirection("west") 
-                timePasses = True
-            elif commandWords[1][0].lower() == 'e':
-                player.goDirection("east") 
-                timePasses = True
-            else:
-                player.goDirection(commandWords[1]) 
-                timePasses = True
-        elif commandWords[0].lower() == "wait": #time passes
-            timePasses = True
-        elif commandWords[0].lower() == "inspect": #inspects item
-            targetName = command[8:]
-            target = player.location.getItemByName(targetName)
-            if target != False:
-                player.inspect(target)
-            else:
-                print("No such item.")
-                commandSuccess = False
-        elif commandWords[0].lower() == "map": #prints a map to the terminal with the player's location
-            clear()
-            file_object = open("map.txt","r")
-            print()
-            print(file_object.read())
-            print()
-            print("You are in " + player.location.number + ".")
-            print()
-            file_object.close()
-            timePasses = True
-            input("Press enter to continue...")
-
-        elif commandWords[0].lower() == "pickup":  #can handle multi-word objects
-            targetName = command[7:]
-            target = player.location.getItemByName(targetName)
-            if target != False:
-                if targetName.lower() == "money": #money isn't added to your inventory
-                    player.money += 1
-                    player.location.items.remove(target) #once it is used, it disappears
+                if commandWords[1][0].lower() == 's': #allows for abbreviations
+                    player.goDirection("south") 
+                    timePasses = True 
+                elif commandWords[1][0].lower() == 'n':
+                    player.goDirection("north") 
+                    timePasses = True
+                elif commandWords[1][0].lower() == 'w':
+                    player.goDirection("west") 
+                    timePasses = True
+                elif commandWords[1][0].lower() == 'e':
+                    player.goDirection("east") 
+                    timePasses = True
                 else:
-                    player.pickup(target)
-            else:
-                print("No such item.")
-                commandSuccess = False
-
-        elif commandWords[0].lower() == "drop":  #drops the specified item
-            targetName = command[5:]
-            target = player.getItemByName(targetName)
-            if target != False:
-                player.drop(target)
-            else:
-                print("No such item.")
-                commandSuccess = False
-        elif commandWords[0].lower() == "inventory": #shows the player's inventory
-            player.showInventory()        
-        elif commandWords[0].lower() == "help": #lists commands
-            showHelp()
-        elif commandWords[0].lower() == "exit": #ends the game
-            playing = False
-        elif commandWords[0].lower() == "attack": #attacks the specified monster
-            targetName = command[7:]
-            target = player.location.getMonsterByName(targetName)
-            if target != False:
-                command = input("Which weapon? ")
-                target2 = player.getItemByName(command)
-                
-                if target2 != False:
-                    player.attackMonster(target,target2)
+                    player.goDirection(commandWords[1]) 
+                    timePasses = True
+            elif commandWords[0].lower() == "wait": #time passes
+                timePasses = True
+            elif commandWords[0].lower() == "inspect": #inspects item
+                targetName = command[8:]
+                target = player.location.getItemByName(targetName)
+                if target != False:
+                    player.inspect(target)
                 else:
-                    print("Not a valid weapon.")
-                    input("Press enter to continue...")
+                    print("No such item.")
+                    commandSuccess = False
+            elif commandWords[0].lower() == "map": #prints a map to the terminal with the player's location
+                clear()
+                file_object = open("map.txt","r")
+                print()
+                print(file_object.read())
+                print()
+                print("You are in " + player.location.number + ".")
+                print()
+                file_object.close()
+                timePasses = True
+                input("Press enter to continue...")
+
+            elif commandWords[0].lower() == "pickup":  #can handle multi-word objects
+                targetName = command[7:]
+                target = player.location.getItemByName(targetName)
+                if target != False:
+                    if targetName.lower() == "money": #money isn't added to your inventory
+                        player.money += 1
+                        player.location.items.remove(target) #once it is used, it disappears
+                    else:
+                        player.pickup(target)
+                else:
+                    print("No such item.")
+                    commandSuccess = False
+
+            elif commandWords[0].lower() == "drop":  #drops the specified item
+                targetName = command[5:]
+                target = player.getItemByName(targetName)
+                if target != False:
+                    player.drop(target)
+                else:
+                    print("No such item.")
+                    commandSuccess = False
+            elif commandWords[0].lower() == "inventory": #shows the player's inventory
+                player.showInventory()        
+            elif commandWords[0].lower() == "help": #lists commands
+                showHelp()
+            elif commandWords[0].lower() == "exit": #ends the game
+                playing = False
+            elif commandWords[0].lower() == "attack": #attacks the specified monster
+                targetName = command[7:]
+                target = player.location.getMonsterByName(targetName)
+                if target != False:
+                    command = input("Which weapon? ")
+                    target2 = player.getItemByName(command)
+                    
+                    if target2 != False:
+                        player.attackMonster(target,target2)
+                    else:
+                        print("Not a valid weapon.")
+                        input("Press enter to continue...")
+                else:
+                    print("No such monster.")
+                    commandSuccess = False
+            elif commandWords[0].lower() == "eat": #eats an item (can lower your health if it's a nonfood item)
+                targetName = command[4:]
+                print(targetName)
+                target = player.getItemByName(targetName)
+                target2 = player.location.getItemByName(targetName)
+                if target != False:
+                    player.eat(target)
+                elif target2 != False:
+                    player.eat(target2)
+                else:
+                    print (targetName)
+                    print("No such item.")
+                    commandSuccess = False
+
+
+            elif commandWords[0].lower() == "talk": #talks to a character
+                targetName = command[5:]
+                target = player.location.getMerByName(targetName)
+                if target != False:
+                    player.talkMer(target)
+                    command = input("What do you want to buy? ")
+                    target2 = target.getItemByName(command.lower())
+                    if target2 != False:
+                        t = player.buy(target2,target)
+
+                else:
+                    print("No such merchant.")
+                    commandSuccess = False
+
+            elif commandWords[0].lower() == "me": #lists stats
+                player.status()
+
+            
             else:
-                print("No such monster.")
+                print("Not a valid command")
                 commandSuccess = False
-        elif commandWords[0].lower() == "eat": #eats an item (can lower your health if it's a nonfood item)
-            targetName = command[4:]
-            print(targetName)
-            target = player.getItemByName(targetName)
-            target2 = player.location.getItemByName(targetName)
-            if target != False:
-                player.eat(target)
-            elif target2 != False:
-                player.eat(target2)
-            else:
-                print (targetName)
-                print("No such item.")
-                commandSuccess = False
-
-
-        elif commandWords[0].lower() == "talk": #talks to a character
-            targetName = command[5:]
-            target = player.location.getMerByName(targetName)
-            if target != False:
-                player.talkMer(target)
-                command = input("What do you want to buy? ")
-                target2 = target.getItemByName(command.lower())
-                if target2 != False:
-                    t = player.buy(target2,target)
-
-            else:
-                print("No such merchant.")
-                commandSuccess = False
-
-        elif commandWords[0].lower() == "me": #lists stats
-            player.status()
-
         else:
+
             print("Not a valid command")
             commandSuccess = False
     if timePasses == True:
