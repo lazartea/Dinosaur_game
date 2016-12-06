@@ -203,10 +203,13 @@ while playing and player.alive:
                 commandSuccess = False
         elif commandWords[0].lower() == "eat": #eats an item (can lower your health if it's a nonfood item)
             targetName = command[4:]
+            print(targetName)
             target = player.getItemByName(targetName)
             target2 = player.location.getItemByName(targetName)
-            if target != False or target2 != False:
-                player.eat(targetName)
+            if target != False:
+                player.eat(target)
+            elif target2 != False:
+                player.eat(target2)
             else:
                 print (targetName)
                 print("No such item.")
