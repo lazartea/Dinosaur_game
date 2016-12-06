@@ -57,6 +57,7 @@ def createWorld():
     Room.connectRooms(d1,"south",d3,"north")
 
     rocks = [Rock() for i in range(5)]
+    boulders = [Boulder() for i in range(3)]
     leaves = [Leaf() for i in range(10)]
     sticks = [Stick() for i in range(3)]
     coins = [Money() for i in range(15)]
@@ -64,6 +65,8 @@ def createWorld():
 
     #adds rocks, sticks, coins, and leaves randomly to rooms
     for item in leaves:
+        item.putInRoom(random.choice(AllRooms))
+    for item in boulders:
         item.putInRoom(random.choice(AllRooms))
     for item in coins:
         item.putInRoom(random.choice(AllRooms))
@@ -79,8 +82,7 @@ def createWorld():
     monsters.append(Sarcosuchus())
     monsters.append(Allosaurus())
     monsters.append(Spinosaurus())
-    x = Armor()
-    x.putInRoom(start)
+    
     for item in monsters:
         item.putInRoom(random.choice(AllRooms))
     inventory_dict = {}
@@ -269,6 +271,7 @@ while playing and player.alive:
 
             print("Not a valid command")
             commandSuccess = False
+
     if timePasses == True:
         updater.updateAll()
 
