@@ -19,12 +19,12 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - loot (3 pts) -needs more work
 - inventory maximum size (2 pts)
 - health subtraction when maximum inventory size reached (1pt)
-- healing items (2 pts) -needs more work
-- regeneration (2 pts) -needs more work
+- healing items (2 pts)
+- regeneration (2 pts)
 - armor (2 pts) -needs more work
 - player attributes (3 pts)
-- more monsters (3 pts) (almost done)
-- currency (4 pts) - needs more work
+- more monsters (3 pts) 
+- currency (4 pts) 
 - bigger world (2pts)
 
 ##TO DO
