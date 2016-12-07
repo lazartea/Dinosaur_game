@@ -259,6 +259,7 @@ while playing and player.alive:
             elif commandWords[0].lower() == "attack": #attacks the specified monster
                 targetName = command[7:]
                 target = player.location.getMonsterByName(targetName)
+                steg = player.location.getMerByName(targetName) #checks to see if you're trying to kill a merchant
                 if target != False:
                     command = input("Which weapon? ")
                     target2 = player.getItemByName(command)
@@ -268,6 +269,14 @@ while playing and player.alive:
                     else:
                         print("Not a valid weapon.")
                         input("Press enter to continue...")
+                elif steg != False:
+                    clear()
+                    print("Stegosaurus is your friend!")
+                    print("He is so offended that you attempted to attack him that he rallies a group of merchants to defeat you.")
+                    print("They come when you are least expecting it, and they kill you in your sleep.")
+                    print("You lose.")
+                    input("Press enter to die...")
+                    playing = False #other lose condition
                 else:
                     print("No such monster.")
                     commandSuccess = False
