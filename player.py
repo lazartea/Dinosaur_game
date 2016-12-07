@@ -32,7 +32,8 @@ class Player:
         #armor condition
         if self.getItemByName("Armor") != False:
             self.armor = True 
-
+        else:
+            self.armor = False
         #win condition:
         if self.win == True:
             clear()
@@ -92,10 +93,14 @@ class Player:
             else:
             #random events (in an else because you can't gain health and lose it on the same turn)
                 if random.random() < .1:
-                    print("A Pterodactyl swoops in and attacks. You lose 10 health.")
-                    self.health -= 10
-                    input("Press enter to continue...")
-                    self.update()
+                    if self.armor == False:
+                        print("A Pterodactyl swoops in and attacks. You lose 10 health.")
+                        self.health -= 10
+                        input("Press enter to continue...")
+                        
+                    else:
+                         print("A Pterodactyl swoops in tries to attack. Your armor saves you.")
+                         input("Press enter to continue...")
             
 
 
@@ -106,7 +111,6 @@ class Player:
             item.loc = self
             self.location.removeItem(item)
             self.item_weight += item.weight
-            self.update()
         else:
             print()
             self.health -= 10
@@ -246,6 +250,9 @@ class Player:
             print('You are not strong enough to pick up this item. You strained your back trying to lift it. Your health is now '+str(self.health))
             input("Press enter to continue...")
         else:
+            if item.name == "Armor":
+                self.armor = True
+                self.update()
             self.money -= mer.inven[item]
             self.items.append(item)
             item.loc = self
