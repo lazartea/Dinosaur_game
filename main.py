@@ -39,7 +39,6 @@ def createWorld():
     Room.connectRooms(f3, "east", f6, "west")
     Room.connectRooms(f6, "north", f5, "south")
     Room.connectRooms(f5, "north", f4, "south")
-    Room.connectRooms(f5, "west", f1, "east")
     Room.connectRooms(f4, "west", f2, "east")
     Room.connectRooms(f6,"east",bstart,"west")
     Room.connectRooms(bstart,"south",b2,"north")
@@ -114,8 +113,22 @@ def printSituation():
         print()
     if player.location.hasItems():
         print("This room contains the following items:")
+
+        inv_dict = {}
+        #prints out the number of each item for stacking
         for i in player.location.items:
-            print(i.name)
+            if i.name not in inv_dict:
+                inv_dict[i.name] = 1
+            else:
+                inv_dict[i.name] = inv_dict[i.name] + 1
+        
+        for key in inv_dict:
+            if inv_dict[key] == 1:
+                print(key)
+            else:
+                print(key+ " X" + str(inv_dict[key]))
+
+
         print()
     print("You can go in the following directions:")
     for e in player.location.exitNames():
