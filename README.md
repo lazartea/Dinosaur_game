@@ -26,7 +26,7 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - inspect command 
   - This command shows the description of an item in the player's current room.
 - stacking items 
-  - If multiple items are in an inventory, the inventory will show the name of the item and the amount present.
+  - If multiple items are in an inventory, the inventory will show the name of the item and the amount present. This will also occur if multiple items are in a room.
 - loot
   - Upon successfully killing a monster, the player receives a randomly generated number of coins. A random item also appears in the current room (either a weapon or food item).
 - inventory maximum size 
