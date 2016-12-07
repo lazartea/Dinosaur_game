@@ -269,9 +269,9 @@ while playing and player.alive:
                         player.attackMonster(target,target2)
                         while target.health > 0 and player.health > 0:
                             command2 = input("Attack again? y/n \n")
-                            if command2 == 'y':
+                            if command2.lower() == 'y':
                                 player.attackMonster(target,target2)
-                            elif command2 == 'n':
+                            elif command2.lower() == 'n':
                                  print("You ran away! Your parents would be ashamed.")
                                  input("Press enter to continue...")
                                  break
