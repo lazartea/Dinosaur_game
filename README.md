@@ -2,6 +2,10 @@
 
 A text-based adventure game created for Math 121. Built by Garrett Linck and Amy Rose Lazarte off of Starter code written by Adam Groce. 
 
+Amy Rose and Garrett worked together in person throughout the majority this assignment. We used a github repository (https://github.com/lazartea/Dinosaur_game) to make our updates and additions as seamless as possible. This helped us collaborate seemlessly even when we could not meet up in person. This way, we could both be testing new implementations , flag errors, and request the addition of new features all in real time.
+
+After Garrett's original partner dropped the class, Amy Rose joined him and began working on the plot that he had already began developing. Unfortunately, Garrett had pneumonia for the week before the first check in, so Amy Rose did the bulk of the initial coding. After his recovery, we began working together on debugging the code Amy Rose had written and implementing new features. Garrett drew the map.txt file based on the rooms that Amy Rose sketeched out in the beginning of the project. 
+
 
 ##Files
 - `monster.py`
@@ -50,14 +54,6 @@ A text-based adventure game created for Math 121. Built by Garrett Linck and Amy
 - victory condition
   - Upon defeating the Angry T-Rex, the player wins the game. The `victory_condition.txt` file is read and printed to the screen, and the game is ended.
 
-##TO DO
-- victory/loss
-- items need to do what they say that they do
-- extra monsters/fix pter
-- add objects to more rooms
-- character at the beginning
-- crafting
-- complex rooms 
-- command abrv
+
 
 
