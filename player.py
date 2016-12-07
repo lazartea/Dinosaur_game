@@ -219,6 +219,7 @@ class Player:
         clear()
         if item in self.items: #eats item from your inventory first
             self.items.remove(item)
+            self.item_weight -= item.weight
         elif item in self.location.items: #otherwise eats item from the room
             self.location.removeItem(item)
 
