@@ -176,7 +176,8 @@ class Player:
                     self.strength += 5
                     self.location.addLoot(self)
                     scavange = random.choice([Leaf(),Dagger(),Leaf(),Leaf(),Leaf(),Leaf()])
-                    self..addItem() #causes loot item to enter the room
+                    self.location.addItem(scavange) #causes loot item to enter the room
+                    print("The "+mon.name+" drops a "+scavange.name+".")
 
                 
             else:
@@ -219,7 +220,7 @@ class Player:
             self.location.removeItem(item)
 
         self.health += item.impact #health will increase or decrease based on the item's pos/neg impact
-        if self.health <= 0: #you can die if you eat a non-food item when you have low health
+        if self.health <= 0:
             self.alive = False
             self.update()
 
