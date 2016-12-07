@@ -256,6 +256,7 @@ while playing and player.alive:
                 showHelp()
             elif commandWords[0].lower() == "exit": #ends the game
                 playing = False
+   
             elif commandWords[0].lower() == "attack": #attacks the specified monster
                 targetName = command[7:]
                 target = player.location.getMonsterByName(targetName)
@@ -266,8 +267,20 @@ while playing and player.alive:
                     
                     if target2 != False:
                         player.attackMonster(target,target2)
-                    else:
+                        while target.health > 0 and player.health > 0:
+                            command2 = input("Attack again? y/n \n")
+                            if command2 == 'y':
+                                player.attackMonster(target,target2)
+                            elif command2 == 'n':
+                                 print("You ran away! Your parents would be ashamed.")
+                                 break
+                            else:
+                                print("Not a command. Please type y or n!")
+                                input("Attack again? y/n")     
+                    elif target2 == False:
                         print("Not a valid weapon.")
+                        input("Press enter to continue...")
+                    else:
                         input("Press enter to continue...")
                 elif steg != False:
                     clear()
