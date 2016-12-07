@@ -10,6 +10,9 @@ class Room:
         self.merchants = []
         self.exits = []
         self.items = []
+        
+
+
     def addExit(self, exitName, destination):
         self.exits.append([exitName, destination])
     def getDestination(self, direction):
@@ -34,7 +37,7 @@ class Room:
         self.merchants.remove(character)
 
     def addLoot(self,player):
-        loot = random.randint(0,15)
+        loot = random.randint(0,200)
         player.money += loot
         print("You scavange "+ str(loot)+" coins.")
     
