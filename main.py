@@ -39,6 +39,7 @@ def createWorld():
     Room.connectRooms(f3, "east", f6, "west")
     Room.connectRooms(f6, "north", f5, "south")
     Room.connectRooms(f5, "north", f4, "south")
+    Room.connectRooms(f5, "west", f1, "east")
     Room.connectRooms(f4, "west", f2, "east")
     Room.connectRooms(f6,"east",bstart,"west")
     Room.connectRooms(bstart,"south",b2,"north")
