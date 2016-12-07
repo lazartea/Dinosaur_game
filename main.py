@@ -273,6 +273,7 @@ while playing and player.alive:
                                 player.attackMonster(target,target2)
                             elif command2 == 'n':
                                  print("You ran away! Your parents would be ashamed.")
+                                 input("Press enter to continue...")
                                  break
                             else:
                                 print("Not a command. Please type y or n!")
