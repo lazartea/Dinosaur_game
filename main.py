@@ -56,42 +56,43 @@ def createWorld():
     Room.connectRooms(d1,"north",d2,"south")
     Room.connectRooms(d1,"south",d3,"north")
 
-    rocks = [Rock() for i in range(5)]
+    rocks = [Rock() for i in range(25)]
     boulders = [Boulder() for i in range(3)]
     leaves = [Leaf() for i in range(10)]
-    sticks = [Stick() for i in range(3)]
+    sticks = [Stick() for i in range(5)]
     coins = [Money() for i in range(15)]
+    items = [rocks,boulders,leaves,sticks,coins]
     
 
     #adds rocks, sticks, coins, and leaves randomly to rooms
-    for item in leaves:
-        item.putInRoom(random.choice(AllRooms))
-    for item in boulders:
-        item.putInRoom(random.choice(AllRooms))
-    for item in coins:
-        item.putInRoom(random.choice(AllRooms))
-    for item in sticks:
-        item.putInRoom(random.choice(AllRooms))
-    for item in rocks:
-        item.putInRoom(random.choice(AllRooms))
+    for ls in items:
+        for i in ls:
+            i.putInRoom(random.choice(AllRooms))
+    
     
     player.location = start
-    monsters = [Pterodactyl() for i in range(3)]
+
+    p = [Pterodactyl() for i in range(8)]
+    ss = [Sarcosuchus() for i in range(3)]
+    s = [Spinosaurus() for i in range(2)]
+    a = [Allosaurus() for i in range(5)]
+    monsters = [p,ss,s,a]
+    for ls in monsters:
+        for m in ls:
+            m.putInRoom(random.choice(AllRooms)) #monsters assigned randomly to rooms
     rex = TRex() 
     rex.putInRoom(d2) #TRex is the final monster, so he's at the end of the map
-    monsters.append(Sarcosuchus())
-    monsters.append(Allosaurus())
-    monsters.append(Spinosaurus())
     
-    for item in monsters:
-        item.putInRoom(random.choice(AllRooms))
     inventory_dict = {}
 
     inventory_list = [Sword(), Dagger(), Pistol(), Armor(),Stick(),Leaf(),Cigarette()]
     
     for item in inventory_list:
         inventory_dict[item] = item.weight * 2
-    Merchant("Stegosaurus", inventory_dict, f3)
+
+    merch = [Merchant(inventory_dict) for i in range(3)]
+    for i in merch:
+        i.putInRoom(random.choice(AllRooms)) #three merchants scattered randomly
    
 
 def clear():
@@ -103,13 +104,35 @@ def printSituation():
     print()
     if player.location.hasMonsters():
         print("This room contains the following monsters:")
-        for m in player.location.monsters:
-            print(m.name)
+        inv_dict = {}
+        #prints out the number of each monster for stacking
+        for i in player.location.monsters:
+            if i.name not in inv_dict:
+                inv_dict[i.name] = 1
+            else:
+                inv_dict[i.name] = inv_dict[i.name] + 1
+        
+        for key in inv_dict:
+            if inv_dict[key] == 1:
+                print(key)
+            else:
+                print(key+ " X" + str(inv_dict[key]))
         print()
     if player.location.hasMer():
         print("This room contains the following merchants:")
-        for c in player.location.merchants:
-            print(c.name)
+        inv_dict = {}
+        #prints out the number of each merchant for stacking
+        for i in player.location.merchants:
+            if i.name not in inv_dict:
+                inv_dict[i.name] = 1
+            else:
+                inv_dict[i.name] = inv_dict[i.name] + 1
+        
+        for key in inv_dict:
+            if inv_dict[key] == 1:
+                print(key)
+            else:
+                print(key+ " X" + str(inv_dict[key]))
         print()
     if player.location.hasItems():
         print("This room contains the following items:")
@@ -165,22 +188,25 @@ while playing and player.alive:
         if len(commandWords) > 0: #fixes error where game crashes if you press enter without a command
             
             if commandWords[0].lower() == "go":   #cannot handle multi-word directions
-
-                if commandWords[1][0].lower() == 's': #allows for abbreviations
-                    player.goDirection("south") 
-                    timePasses = True 
-                elif commandWords[1][0].lower() == 'n':
-                    player.goDirection("north") 
-                    timePasses = True
-                elif commandWords[1][0].lower() == 'w':
-                    player.goDirection("west") 
-                    timePasses = True
-                elif commandWords[1][0].lower() == 'e':
-                    player.goDirection("east") 
-                    timePasses = True
+                if len(commandWords) > 1: #bug fix if only 'go' is entered
+                    if commandWords[1][0].lower() == 's': #allows for abbreviations
+                        player.goDirection("south") 
+                        timePasses = True 
+                    elif commandWords[1][0].lower() == 'n':
+                        player.goDirection("north") 
+                        timePasses = True
+                    elif commandWords[1][0].lower() == 'w':
+                        player.goDirection("west") 
+                        timePasses = True
+                    elif commandWords[1][0].lower() == 'e':
+                        player.goDirection("east") 
+                        timePasses = True
+                    else:
+                        player.goDirection(commandWords[1]) 
+                        timePasses = True
                 else:
-                    player.goDirection(commandWords[1]) 
-                    timePasses = True
+                    print("Not a valid direction.")
+                    commandSuccess = False
             elif commandWords[0].lower() == "wait": #time passes
                 timePasses = True
             elif commandWords[0].lower() == "inspect": #inspects item
