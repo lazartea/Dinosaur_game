@@ -6,6 +6,7 @@ Amy Rose and Garrett worked together in person throughout the majority this assi
 
 After Garrett's original partner dropped the class, Amy Rose joined him and began working on the plot that he had already began developing. Unfortunately, Garrett had pneumonia for the week before the first check in, so Amy Rose did the bulk of the initial coding. After his recovery, we began working together on debugging the code Amy Rose had written and implementing new features. Garrett drew the `map.txt` file based on the rooms that Amy Rose sketeched out in the beginning of the project. 
 
+Images in the `victory_screen.txt` and `lose_condition.txt` are taken from http://www.asciiworld.com/-Dinosaurs-.html
 
 ##Files
 - `monster.py`
@@ -15,7 +16,8 @@ After Garrett's original partner dropped the class, Amy Rose joined him and bega
 - `room.py`
 - `updater.py`
 - `map.txt.` The map image.
-- `victory_condition.txt` The Victory condition image.
+- `victory_screen.txt` The Victory condition image.
+- `lose_condition.txt` The lose condition image.
 
 
 ##Improvements
