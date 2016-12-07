@@ -219,6 +219,9 @@ class Player:
             self.location.removeItem(item)
 
         self.health += item.impact #health will increase or decrease based on the item's pos/neg impact
+        if self.health <= 0: #you can die if you eat a non-food item when you have low health
+            self.alive = False
+            self.update()
 
         print('Your health is now '+str(self.health))
         print()
