@@ -1,5 +1,5 @@
 import os
-from item import Item
+from item import Item, Leaf, Rock, Dagger
 import updater
 import random
 
@@ -10,14 +10,14 @@ class Player:
     def __init__(self):
         self.location = None
         self.items = []
-        self.item_weight = 0
-        self.strength = 100
+        self.item_weight = 0 #total weight carrying. cannot be more than strength
+        self.strength = 100 #inventory max
         self.money = 100
         self.health = 100
-        self.alive = True
-        self.win = False
-        self.armor = False
-        self.leveluplist = [150,200,250,300,350,450,550]
+        self.alive = True 
+        self.win = False 
+        self.armor = False 
+        self.leveluplist = [150,200,250,300,350,450,550] #strength will increase when each of these levels are reached
         updater.register(self)
 
     def goDirection(self, direction):
@@ -36,7 +36,7 @@ class Player:
         #win condition:
         if self.win == True:
             clear()
-            print("You are have won the game. You are a great asset to humankind.")
+            print("You are have won the game. You are a great asset to dinosaurkind.")
             file_object = open("victory_screen.txt","r")
             print()
             print(file_object.read())
@@ -79,10 +79,10 @@ class Player:
 
         else:
 
-            if random.random() < .25:
+            if random.random() < .15:
                 self.health += 5
                 clear()
-                print("Time has passed and you have gained 1 health. You feel slightly rejuvenated.")
+                print("Time has passed and you have gained 5 health. You feel slightly rejuvenated.")
                 print()
                 input("Press enter to continue...")
             else:
@@ -124,7 +124,7 @@ class Player:
         print("You are currently carrying:")
         print()
         inv_dict = {}
-        #prints out the number of each item
+        #prints out the number of each item for stacking
         for i in self.items:
             if i.name not in inv_dict:
                 inv_dict[i.name] = 1
@@ -149,7 +149,7 @@ class Player:
         print()
     
         if random.random() < mon.prob:
-            if self.armor != True:
+            if self.armor != True: #you cannot be hurt when you are wearing armor
                 self.health -= mon.damage
                 print("The " + mon.name +" injures you.")
                 print("Your health is " + str(self.health)+".")
@@ -157,7 +157,7 @@ class Player:
                 if self.health <= 0:
                     print("You lose. You are dead. You met the same sorry fate as your parents.")
                     input("Press enter to continue...")
-                    self.alive = False
+                    self.alive = False #ends game
             else:
                 print("The " + mon.name +" tries to attack you. Your armor protects you.")
                 input("Press enter to continue...")
@@ -167,15 +167,17 @@ class Player:
             
             if mon.health <= 0:
                 mon.die()
-                if mon.name == "Angry T-Rex":
-                    self.win = True 
+                if mon.name == "Angry T-Rex": 
+                    self.win = True  #victory condition
                     self.update()
                 else:
                     print("You kill the " + mon.name +". Your health is now " + str(self.health) + ".")
                     print("You have gained 5 strength points.")
                     self.strength += 5
                     self.location.addLoot(self)
-                    self.location.addItem(random.choice([Leaf(),Dagger(),Leaf(),Leaf(),Leaf(),Leaf()])) #######Just Added this for loot?
+                    scavange = random.choice([Leaf(),Dagger(),Leaf(),Leaf(),Leaf(),Leaf()])
+                    self..addItem() #causes loot item to enter the room
+
                 
             else:
                 print("You injure the " + mon.name)
@@ -211,12 +213,12 @@ class Player:
         
     def eat(self, item):
         clear()
-        if item in self.items:
+        if item in self.items: #eats item from your inventory first
             self.items.remove(item)
-        elif item in self.location.items:
+        elif item in self.location.items: #otherwise eats item from the room
             self.location.removeItem(item)
 
-        self.health += item.impact
+        self.health += item.impact #health will increase or decrease based on the item's pos/neg impact
 
         print('Your health is now '+str(self.health))
         print()
@@ -226,10 +228,10 @@ class Player:
         clear()
         
         
-        if mer.inven[item] > self.money:
+        if mer.inven[item] > self.money: #must have enough money
             print("You do not have enough money.")
             input("Press enter to continue...")
-        elif self.item_weight + item.weight > self.strength:
+        elif self.item_weight + item.weight > self.strength: #must have enough strength
             self.money -= mer.inven[item]
             self.health -= 10
             self.location.addItem(item)
