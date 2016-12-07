@@ -7,12 +7,13 @@ class Monster:
         self.name = name
         self.health = health
         self.loc = None
-        self.prob = prob
-        self.damage = damage
+        self.prob = prob #the probability that the monster will hurt player
+        self.damage = damage #the damage to player's health that will occur if an attack is unsuccessful
         
         updater.register(self)
+
     def update(self):
-        if random.random() < .5 and self.name != "Angry T-Rex":
+        if random.random() < .5 and self.name != "Angry T-Rex": #angry T-rex is the final monster so he doesn't move
             room = self.loc.randomNeighbor()
             self.moveTo(room)
 
@@ -25,26 +26,27 @@ class Monster:
         self.loc.removeMonster(self)
         self.loc = room
         self.loc.addMonster(self)
+
     def die(self):
         self.loc.removeMonster(self)
         updater.deregister(self)
 
 class TRex(Monster):
     def __init__(self):
-        Monster.__init__(self,"Angry T-Rex",200, .40, 20)
+        Monster.__init__(self,"Angry T-Rex",125, .50, 25)
 
 class Pterodactyl(Monster):
     def __init__(self):
-        Monster.__init__(self,"Pterodactyl",100, .10, 10)
+        Monster.__init__(self,"Pterodactyl",5, .10, 5)
 
 class Spinosaurus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Spinosaurus",160, .20, 5)
+        Monster.__init__(self,"Spinosaurus",60, .20, 15)
         
 class Allosaurus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Allosaurus",150, .25, 12)
+        Monster.__init__(self,"Allosaurus",25, .25, 12)
         
 class Sarcosuchus(Monster):
     def __init__(self):
-        Monster.__init__(self,"Sarcosuchus",115, .20, 11)
+        Monster.__init__(self,"Sarcosuchus",50, .30, 15)
