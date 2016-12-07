@@ -53,8 +53,12 @@ class Player:
             clear()
             print()
             print("Your health has reached an unrecoverable level. You die.")
+            file_object = open("lose_condition.txt","r")
             print()
-            print("The end.")
+            print(file_object.read())
+            print()
+            file_object.close()
+            input("Press enter to continue...")
             print()
             exit()
 
