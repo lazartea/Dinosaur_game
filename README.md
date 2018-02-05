@@ -1,4 +1,4 @@
-#Dinosaur Game
+# Dinosaur Game
 
 A text-based adventure game created for Math 121. Built by Garrett Linck and Amy Rose Lazarte off of Starter code written by Adam Groce. 
 
@@ -8,7 +8,7 @@ After Garrett's original partner dropped the class, Amy Rose joined him and bega
 
 Images in the `victory_screen.txt` and `lose_condition.txt` are taken from http://www.asciiworld.com/-Dinosaurs-.html
 
-##Files
+## Files
 - `monster.py`
 - `player.py`
 - `main.py`
@@ -20,7 +20,7 @@ Images in the `victory_screen.txt` and `lose_condition.txt` are taken from http:
 - `lose_condition.txt` The lose condition image.
 
 
-##Improvements
+## Improvements
 - drop command
   - This command was modeled after the pickup command.
 - wait command 
