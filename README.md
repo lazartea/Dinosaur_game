@@ -1,6 +1,6 @@
 # Dinosaur Game
 
-A text-based adventure game created for Math 121. Built by Garrett Linck and Amy Rose Lazarte off of Starter code written by Adam Groce. 
+A text-based adventure game created for Math 121. Built by Garrett and Amy Rose off of Starter code written by Adam Groce. 
 
 Amy Rose and Garrett worked together in person throughout the majority this assignment. We used a github repository (https://github.com/lazartea/Dinosaur_game) to make our updates and additions as seamless as possible. This helped us collaborate seemlessly even when we could not meet up in person. This way, we could both be testing new implementations, flag errors, and request the addition of new features all in real time.
 
